@@ -5,13 +5,17 @@
   
 
   
-  <title>归档: 2020/4 | CK的博客</title>
+  <title>adb一些命令 | CK的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="CK的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/04/index.html">
+  <meta name="description" content="adb 调试 安卓设备1234567891011121314151617$ adb devices   &#x2F;&#x2F; 查看设备列表$ adb -s xxx cmd    &#x2F;&#x2F; 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell$ adb push pcPath AndroidPath   &#x2F;&#x2F; 上传文件到安卓设备$ adb pull AndroidPath pcPath">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adb一些命令">
+<meta property="og:url" content="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="CK的博客">
+<meta property="og:description" content="adb 调试 安卓设备1234567891011121314151617$ adb devices   &#x2F;&#x2F; 查看设备列表$ adb -s xxx cmd    &#x2F;&#x2F; 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell$ adb push pcPath AndroidPath   &#x2F;&#x2F; 上传文件到安卓设备$ adb pull AndroidPath pcPath">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-30T02:38:20.000Z">
+<meta property="article:modified_time" content="2020-07-22T11:05:00.799Z">
 <meta property="article:author" content="CK Jiang">
 <meta name="twitter:card" content="summary">
   
@@ -58,78 +62,60 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  <time datetime="2020-04-30T02:38:20.000Z" itemprop="datePublished">4月 30</time>
+        <section id="main"><article id="post-adb一些命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-04-30T02:38:20.000Z" itemprop="datePublished">2020-04-30</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/">adb一些命令</a>
+    <h1 class="article-title" itemprop="name">
+      adb一些命令
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/" class="archive-article-date">
-  <time datetime="2020-04-28T03:25:15.000Z" itemprop="datePublished">4月 28</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/">安卓逆向入门一</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" class="archive-article-date">
-  <time datetime="2020-04-17T01:58:41.000Z" itemprop="datePublished">4月 17</time>
-</a>
+        <h3 id="adb-调试-安卓设备"><a href="#adb-调试-安卓设备" class="headerlink" title="adb 调试 安卓设备"></a>adb 调试 安卓设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices   // 查看设备列表</span><br><span class="line">$ adb -s xxx cmd    // 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell</span><br><span class="line">$ adb push pcPath AndroidPath   // 上传文件到安卓设备</span><br><span class="line">$ adb pull AndroidPath pcPath   // 拉安卓设备的文件到电脑</span><br><span class="line">$ adb install softwarePath      // 安装软件到安卓设备</span><br><span class="line">$ adb shell screencap -p sdcard/1.png   // 截图</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">true</span>     // 打开飞行模式 需要root权限</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">false</span>    // 关闭飞行模式 需</span><br><span class="line">要root权限</span><br><span class="line"></span><br><span class="line">// 发送广播 启动完成</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.BOOT_COMPLETED</span><br><span class="line"></span><br><span class="line">$ busybox vi xx     // 远程编辑文件</span><br><span class="line"></span><br><span class="line">// 进入fastboot</span><br><span class="line">$ adb reboot bootloader</span><br></pre></td></tr></table></figure>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">Kali Linux 渗透 Wifi 初探</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" data-id="cl1wa8w3p0007ullhc7dp9ik5" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mac-反编译apk工具的使用
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">安卓逆向入门一</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         

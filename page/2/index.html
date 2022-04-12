@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CK的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="CK的博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="CK的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CK Jiang">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">CK的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Mac-反编译apk工具的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-05-01T03:25:00.000Z" itemprop="datePublished">2020-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">Mac-反编译apk工具的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安卓反编译三大利器-apktool、dex2jar、JD-GUI"><a href="#安卓反编译三大利器-apktool、dex2jar、JD-GUI" class="headerlink" title="安卓反编译三大利器 apktool、dex2jar、JD-GUI"></a>安卓反编译三大利器 apktool、dex2jar、JD-GUI</h2><h3 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h3><ul>
+<li>Google 提供的 APK 编译工具，能够反编译和编译APK</li>
+</ul>
+<h3 id="dex2jar"><a href="#dex2jar" class="headerlink" title="dex2jar"></a>dex2jar</h3><ul>
+<li>专门用来反编译.dex文件，可以把.dex文件反编译为.jar文件</li>
+<li>最新版本在 <a href="https://github.com/pxb1988/dex2jar.git" target="_blank" rel="noopener">github</a>，编译命令 ./gradlew build，生成的可执行文件在 根目录/dex-tools/build/distributions/dex-tools-2.1-SNAPSHOT.zip</li>
+<li>执行命令 目录/d2j-dex2jar class.dex</li>
+</ul>
+<h3 id="JD-GUI"><a href="#JD-GUI" class="headerlink" title="JD-GUI"></a>JD-GUI</h3><ul>
+<li>将.jar文件，反编译为.java文件</li>
+</ul>
+<h2 id="apktool-使用"><a href="#apktool-使用" class="headerlink" title="apktool 使用"></a>apktool 使用</h2><ul>
+<li>apktool d xx.apk  不能得到classes.dex文件，但有smali文件夹,smali里面存放的就是java文件，不过已经被转换为smali语言</li>
+<li>apktool d -s xx.apk 能得到 classes.dex 一般用这种方式来反编译apk</li>
+<li>apktool b -o output.apk dir 打包，只能打包通过apktool 反编译出来的文件夹</li>
+</ul>
+<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><ul>
+<li><p>生成keystore文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias demo.keystore -keyalg RSA -validity 40000 -keystore demo.keystore</span><br></pre></td></tr></table></figure>
+
+<p>-genkey 产生证书文件</p>
+<p>-alias 产生别名</p>
+<p>-keystore 指定密钥库的keystore文件</p>
+<p>-keyalg 指定密钥算法</p>
+<p>-validity 证书有效天数</p>
+</li>
+<li><p>签名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore demo.keystore demo.apk demo.keystore</span><br></pre></td></tr></table></figure>
+
+<p>-verbose 指定生成详细输出<br>-keystore 指定数字证书存储路径</p>
+<p>最后面的demo.keystore 是指生成keystore文件时，-alias 带的别名，如果生成keystore时没有带-alias，则签名的时候，最后一个demo.keystore 应该为 mykey，即</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore demo.keystore demo.apk mykey</span><br></pre></td></tr></table></figure>
+
+<p>![image-20200504200327918](/Users/chenk/Library/Application Support/typora-user-images/image-20200504200327918.png)</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cl1wa8w3j0001ullhaatsbcok" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-adb一些命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-04-30T02:38:20.000Z" itemprop="datePublished">2020-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/">adb一些命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="adb-调试-安卓设备"><a href="#adb-调试-安卓设备" class="headerlink" title="adb 调试 安卓设备"></a>adb 调试 安卓设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices   // 查看设备列表</span><br><span class="line">$ adb -s xxx cmd    // 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell</span><br><span class="line">$ adb push pcPath AndroidPath   // 上传文件到安卓设备</span><br><span class="line">$ adb pull AndroidPath pcPath   // 拉安卓设备的文件到电脑</span><br><span class="line">$ adb install softwarePath      // 安装软件到安卓设备</span><br><span class="line">$ adb shell screencap -p sdcard/1.png   // 截图</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">true</span>     // 打开飞行模式 需要root权限</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">false</span>    // 关闭飞行模式 需</span><br><span class="line">要root权限</span><br><span class="line"></span><br><span class="line">// 发送广播 启动完成</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.BOOT_COMPLETED</span><br><span class="line"></span><br><span class="line">$ busybox vi xx     // 远程编辑文件</span><br><span class="line"></span><br><span class="line">// 进入fastboot</span><br><span class="line">$ adb reboot bootloader</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" data-id="cl1wa8w3p0007ullhc7dp9ik5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-安卓逆向入门一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/" class="article-date">
+  <time datetime="2020-04-28T03:25:15.000Z" itemprop="datePublished">2020-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/">安卓逆向入门一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><h4 id="java开发环境"><a href="#java开发环境" class="headerlink" title="java开发环境"></a>java开发环境</h4><ul>
+<li>JDK — java开发环境集</li>
+<li>JRE — 运行所需环境</li>
+</ul>
+<h4 id="Android所需环境"><a href="#Android所需环境" class="headerlink" title="Android所需环境"></a>Android所需环境</h4><ul>
+<li>SDK —（Software Development Kit）软件开发工具包</li>
+<li>NDK — Native Development Kit 用来给安卓手机开发游戏用的，用于java和c++的接口交互</li>
+</ul>
+<h3 id="apk-文件结构"><a href="#apk-文件结构" class="headerlink" title="apk 文件结构"></a>apk 文件结构</h3><ul>
+<li>将apk后缀改成zip后缀，可查看文件结构</li>
+<li>assets: 不需要通过AAPT编译的静态资源</li>
+<li>lib: 存放 .so 文件</li>
+<li>META-INF: 签名文件夹</li>
+<li>dex: 存放代码和可执行文件</li>
+<li>AndroidManifest.xml: 配置清单文件</li>
+<li>resources.arsc: 资源索引表</li>
+<li>res: 需要通过AAPT编译的资源，在资源索引表中会生产索引</li>
+</ul>
+<h3 id="apk-安装流程"><a href="#apk-安装流程" class="headerlink" title="apk 安装流程"></a>apk 安装流程</h3><h4 id="几个重要目录"><a href="#几个重要目录" class="headerlink" title="几个重要目录"></a>几个重要目录</h4><ul>
+<li>system/app 系统自带的应用程序，获得adb root 权限才能删除</li>
+<li>data/app  用户程序安装目录，安装时把apk文件复制到此目录，此apk可以导出直接重新安装</li>
+<li>data/data 存放应用程序的数据</li>
+<li>data/dalvik-cache     将apk中的dex文件安装到dalvik-cache目录下（dex文件是dalvik虚拟机的可执行文件，其大小约为原始apk的四分之一）</li>
+<li>data/system/packages.xml  里面会有对应的apk的信息</li>
+</ul>
+<h4 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h4><ul>
+<li>复制apk安装包到/data/app目录下，解压并扫描安装包，把dex文件（Dalvik字节码）保存到dalvik-cache目录，并在/data/data目录下创建对应的应用数据</li>
+</ul>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><ul>
+<li>删除安装过程中在上述三个目录的建的文件</li>
+</ul>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><h4 id="java-虚拟机-JVM"><a href="#java-虚拟机-JVM" class="headerlink" title="java 虚拟机 JVM"></a>java 虚拟机 JVM</h4><ul>
+<li>java字节码，基于栈结构</li>
+</ul>
+<h4 id="dalvik虚拟机"><a href="#dalvik虚拟机" class="headerlink" title="dalvik虚拟机"></a>dalvik虚拟机</h4><ul>
+<li>jit机制</li>
+<li>Android 5.0以下（不含5.0）</li>
+<li>dalvik可执行文件体积更小，基于寄存器架构</li>
+<li><font color=red>.dex =&gt; dexopt =&gt; .odex dalvik加载执行的是 odex文件 </font></li>
+</ul>
+<h4 id="art虚拟机"><a href="#art虚拟机" class="headerlink" title="art虚拟机"></a>art虚拟机</h4><ul>
+<li>aot机制</li>
+<li>Android5.0以上（含5.0）</li>
+<li><font color=red>.dex =&gt; dex2oat =&gt; .oat art 加载执行的是oat文件，dex2oat 位于 /system/bin/dex2oat</font></li>
+</ul>
+<h3 id="dalvik字节码类型"><a href="#dalvik字节码类型" class="headerlink" title="dalvik字节码类型"></a>dalvik字节码类型</h3><p>![image-20200506105406084](/Users/chenk/Library/Application Support/typora-user-images/image-20200506105406084.png)</p>
+<p>![image-20200506105754425](/Users/chenk/Library/Application Support/typora-user-images/image-20200506105754425.png)</p>
+<p>###![image-20200506104145925](/Users/chenk/Library/Application Support/typora-user-images/image-20200506104145925.png) </p>
+<h3 id="dalvik-指令集"><a href="#dalvik-指令集" class="headerlink" title="dalvik 指令集"></a>dalvik 指令集</h3><ul>
+<li><p>格式</p>
+<p>基础字节码 - 名称后缀/字节码后缀 目的寄存器 源寄存器</p>
+<p>名称后缀是 wide，表示数据宽度为64位</p>
+<p>字节码后缀是 from16，表示源寄存器为16位</p>
+</li>
+<li><p>例子</p>
+<p>move-wide/from16 vAA, vBBBB</p>
+<p>move 为基础字节码，即opcode</p>
+<p>wide为名称后缀，标识指令操作的数据宽度是64位</p>
+<p>from16为字节码后缀，标识源为一个16位的寄存器引用变量</p>
+<p>vAA为目的寄存器，它始终在源前面，取值范围 v0～v255（2的8次方？？）</p>
+<p>vBBBB为源寄存器，取值范围为 v0～v65535（2的16次方？？？）</p>
+</li>
+<li><p>说明</p>
+<p>dalvik指令大多数指令都用到了寄存器作为目的的操作数或源操作数，即把寄存器作为一个容器，用来存放东西。其中 A/B/C/D/E/F/G/H 代表一个4位的数，AA/BB/CC/DD… 代表一个8位的数，AAAA/BBBB… 代表一个64位的数</p>
+</li>
+<li><p>13种dalvik指令</p>
+<ul>
+<li><p>空操作指令</p>
+<ul>
+<li>nop，值为00，通常用于代码对齐，无实际操作</li>
+</ul>
+</li>
+<li><p>数据操作指令</p>
+<ul>
+<li><p>move</p>
+<ul>
+<li><p>有三个作用</p>
+<p>1、进行赋值操作；</p>
+<p>2、move-result 接收方法返回值；</p>
+<p>3、处理异常的操作</p>
+</li>
+<li><p>例子</p>
+<p>move-result-void 返回值为空</p>
+<p>move-result vAA     返回32位的非对象值，寄存器是8位</p>
+<p>move-result-object vAA    返回值为对象，寄存器是8位</p>
+<p>move-exception vAA 将异常保存到寄存器vAA</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>数据定义指令</p>
+<ul>
+<li>const</li>
+</ul>
+</li>
+<li><p>数组</p>
+<ul>
+<li>array-length vA, vB     </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/" data-id="cl1wa8w3t000dullh6hp31ftd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Kail-Linux-渗透-Wifi-初探" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" class="article-date">
+  <time datetime="2020-04-17T01:58:41.000Z" itemprop="datePublished">2020-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">Kali Linux 渗透 Wifi 初探</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="先将无线网卡插入Kali-Linux，输入iwconfig命令查看得到，网卡名为wlan0"><a href="#先将无线网卡插入Kali-Linux，输入iwconfig命令查看得到，网卡名为wlan0" class="headerlink" title="先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0"></a>先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0</h3><h3 id="排除影响进行无线实验的因素"><a href="#排除影响进行无线实验的因素" class="headerlink" title="排除影响进行无线实验的因素"></a>排除影响进行无线实验的因素</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ service network-manager stop</span><br><span class="line">$ airmon-ng check <span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动monitor模式"><a href="#启动monitor模式" class="headerlink" title="启动monitor模式"></a>启动monitor模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airman-ng start wlan0</span><br></pre></td></tr></table></figure>
+
+<h3 id="抓包（扫描wifi）"><a href="#抓包（扫描wifi）" class="headerlink" title="抓包（扫描wifi）"></a>抓包（扫描wifi）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng wlan0mon</span><br></pre></td></tr></table></figure>
+
+<h3 id="针对要破解的WiFi重新开启监听记录"><a href="#针对要破解的WiFi重新开启监听记录" class="headerlink" title="针对要破解的WiFi重新开启监听记录"></a>针对要破解的WiFi重新开启监听记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng -w 文件名 --bssid [路由器的MAC地址] -c [监听频道CH] wlan0mon</span><br></pre></td></tr></table></figure>
+
+<h3 id="打开另一个shell窗口运行-强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包"><a href="#打开另一个shell窗口运行-强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包" class="headerlink" title="打开另一个shell窗口运行(强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包)"></a>打开另一个shell窗口运行(强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aireplay-ng -0 1 -a [路由器的MAC地址] -c [客户端的MAC地址] wlan0mon</span><br></pre></td></tr></table></figure>
+
+<h3 id="跑包测试加密的无线密码"><a href="#跑包测试加密的无线密码" class="headerlink" title="跑包测试加密的无线密码"></a>跑包测试加密的无线密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aircrack-ng -w [准备好的密码字典] [捕获到的数据包 .<span class="built_in">cap</span>后缀的]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Kali中几个常用的字典文件的位置："><a href="#Kali中几个常用的字典文件的位置：" class="headerlink" title="Kali中几个常用的字典文件的位置："></a>Kali中几个常用的字典文件的位置：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/john/password.lst</span><br><span class="line">/usr/share/wfuzz/wordlist</span><br><span class="line">/usr/share/wordlists</span><br><span class="line">/usr/share/wordlists/rockyou.txt.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="破解例子"><a href="#破解例子" class="headerlink" title="破解例子"></a>破解例子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/share/wordlists/ &amp;&amp; gunzip rockyou.txt.gz</span><br><span class="line">​$ aircrack-ng -w /usr/share/wordlists/rockyou.txt wpa2-01.cap</span><br></pre></td></tr></table></figure>
+
+<h3 id="END-等待跑包吧。。"><a href="#END-等待跑包吧。。" class="headerlink" title="END 等待跑包吧。。"></a>END 等待跑包吧。。</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" data-id="cl1wa8w3b0000ullh8ufi13w7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 10px;">渗透</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/08/Android-Killer/">Android-Killer</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/">AndroidStudio使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 CK Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

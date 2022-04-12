@@ -60,10 +60,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Kail-Linux-渗透-Wifi-初探" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mac-php开发环境" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" class="article-date">
-  <time datetime="2020-04-17T01:58:41.000Z" itemprop="datePublished">2020-04-17</time>
+    <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2020-10-27T12:47:10.000Z" itemprop="datePublished">2020-10-27</time>
 </a>
     
   </div>
@@ -74,7 +74,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">Kali Linux 渗透 Wifi 初探</a>
+      <a class="article-title" href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
     </h1>
   
 
@@ -82,31 +82,430 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="先将无线网卡插入Kali-Linux，输入iwconfig命令查看得到，网卡名为wlan0"><a href="#先将无线网卡插入Kali-Linux，输入iwconfig命令查看得到，网卡名为wlan0" class="headerlink" title="先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0"></a>先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0</h3><h3 id="排除影响进行无线实验的因素"><a href="#排除影响进行无线实验的因素" class="headerlink" title="排除影响进行无线实验的因素"></a>排除影响进行无线实验的因素</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ service network-manager stop</span><br><span class="line">$ airmon-ng check <span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
+        <h2 id="开启Apache服务"><a href="#开启Apache服务" class="headerlink" title="开启Apache服务"></a>开启Apache服务</h2><h3 id="mac有自带apache和php-直接打开命令行即可"><a href="#mac有自带apache和php-直接打开命令行即可" class="headerlink" title="mac有自带apache和php 直接打开命令行即可"></a>mac有自带apache和php 直接打开命令行即可</h3><ul>
+<li><p>首先切换到root用户 sudo -i</p>
+</li>
+<li><p>接着查看80端口是否被暂用 lsof</p>
+</li>
+<li><p>查看apache 版本  httpd -v</p>
+</li>
+<li><p>开启apache     apachectl start</p>
+</li>
+<li><p>重启apache  apachectl restart</p>
+</li>
+<li><p>关闭apache  apachectl stop</p>
+</li>
+<li><p>运行 127.0.0.1,显示it works表示apache开启成功</p>
+</li>
+</ul>
+<h2 id="开启php"><a href="#开启php" class="headerlink" title="开启php"></a>开启php</h2><h3 id="进入路径-etc-apache2-开启apache配置文件httpd-conf-开启php模块"><a href="#进入路径-etc-apache2-开启apache配置文件httpd-conf-开启php模块" class="headerlink" title="进入路径/etc/apache2 开启apache配置文件httpd.conf 开启php模块"></a>进入路径/etc/apache2 开启apache配置文件httpd.conf 开启php模块</h3><ul>
+<li>找到类似这行，然后把注释去掉 LoadModule php7_module libexec/apache2/libphp7.so  </li>
+</ul>
+<h2 id="在-etc-apache2-httpd-conf-查看网站服务器根目录"><a href="#在-etc-apache2-httpd-conf-查看网站服务器根目录" class="headerlink" title="在 /etc/apache2/httpd.conf 查看网站服务器根目录"></a>在 /etc/apache2/httpd.conf 查看网站服务器根目录</h2><h3 id="查找-DocumentRoot，能看到网站跟目录"><a href="#查找-DocumentRoot，能看到网站跟目录" class="headerlink" title="查找  DocumentRoot，能看到网站跟目录"></a>查找  DocumentRoot，能看到网站跟目录</h3><h2 id="重启Apache服务器，在网站服务器根目录，写个test-php"><a href="#重启Apache服务器，在网站服务器根目录，写个test-php" class="headerlink" title="重启Apache服务器，在网站服务器根目录，写个test.php"></a>重启Apache服务器，在网站服务器根目录，写个test.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    echo &#39;hello xym:this mac default apache !!! 2018.6.21!!&#39;;</span><br><span class="line">    phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="启动monitor模式"><a href="#启动monitor模式" class="headerlink" title="启动monitor模式"></a>启动monitor模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airman-ng start wlan0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>到浏览器执行 127.0.0.1/test.php，能显示php的相关信息，就是正常的</li>
+</ul>
 
-<h3 id="抓包（扫描wifi）"><a href="#抓包（扫描wifi）" class="headerlink" title="抓包（扫描wifi）"></a>抓包（扫描wifi）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng wlan0mon</span><br></pre></td></tr></table></figure>
-
-<h3 id="针对要破解的WiFi重新开启监听记录"><a href="#针对要破解的WiFi重新开启监听记录" class="headerlink" title="针对要破解的WiFi重新开启监听记录"></a>针对要破解的WiFi重新开启监听记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng -w 文件名 --bssid [路由器的MAC地址] -c [监听频道CH] wlan0mon</span><br></pre></td></tr></table></figure>
-
-<h3 id="打开另一个shell窗口运行-强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包"><a href="#打开另一个shell窗口运行-强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包" class="headerlink" title="打开另一个shell窗口运行(强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包)"></a>打开另一个shell窗口运行(强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aireplay-ng -0 1 -a [路由器的MAC地址] -c [客户端的MAC地址] wlan0mon</span><br></pre></td></tr></table></figure>
-
-<h3 id="跑包测试加密的无线密码"><a href="#跑包测试加密的无线密码" class="headerlink" title="跑包测试加密的无线密码"></a>跑包测试加密的无线密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aircrack-ng -w [准备好的密码字典] [捕获到的数据包 .<span class="built_in">cap</span>后缀的]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Kali中几个常用的字典文件的位置："><a href="#Kali中几个常用的字典文件的位置：" class="headerlink" title="Kali中几个常用的字典文件的位置："></a>Kali中几个常用的字典文件的位置：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/john/password.lst</span><br><span class="line">/usr/share/wfuzz/wordlist</span><br><span class="line">/usr/share/wordlists</span><br><span class="line">/usr/share/wordlists/rockyou.txt.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="破解例子"><a href="#破解例子" class="headerlink" title="破解例子"></a>破解例子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/share/wordlists/ &amp;&amp; gunzip rockyou.txt.gz</span><br><span class="line">​$ aircrack-ng -w /usr/share/wordlists/rockyou.txt wpa2-01.cap</span><br></pre></td></tr></table></figure>
-
-<h3 id="END-等待跑包吧。。"><a href="#END-等待跑包吧。。" class="headerlink" title="END 等待跑包吧。。"></a>END 等待跑包吧。。</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" data-id="ck9jbtjbh000066lh2zam0fln" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="cl1wa8w3q0009ullhflda2nw5" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
 
+
+  
+    <article id="post-Android-Killer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/08/Android-Killer/" class="article-date">
+  <time datetime="2020-09-07T16:47:54.000Z" itemprop="datePublished">2020-09-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/08/Android-Killer/">Android-Killer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="解包分析时，APKTOOL管理器选择默认的"><a href="#解包分析时，APKTOOL管理器选择默认的" class="headerlink" title="解包分析时，APKTOOL管理器选择默认的"></a>解包分析时，APKTOOL管理器选择默认的</h2><h2 id="重新编译时，APKTOOL管理器选择2-4-1的"><a href="#重新编译时，APKTOOL管理器选择2-4-1的" class="headerlink" title="重新编译时，APKTOOL管理器选择2.4.1的"></a>重新编译时，APKTOOL管理器选择2.4.1的</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/08/Android-Killer/" data-id="cl1wa8w3m0003ullh8gxs4s14" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-宝塔" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/" class="article-date">
+  <time datetime="2020-08-17T16:53:37.000Z" itemprop="datePublished">2020-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>数据库，远程访问不了</p>
+<p>终端输入<br>mysql -uroot -p</p>
+<p>输入密码后，以下命令是在mysql内完成，仍然是在终端<br>mysql&gt; use mysql;<br>mysql&gt; select user, Host from user;<br>+————+————+<br>| user       | Host       |<br>+————+————+<br>| xxxxxxxxxx | %          |<br>| numbers    | %          |<br>| root       | 127.0.0.1  |<br>|            | 4z-k20-a35 |<br>| root       | 4z-k20-a35 |<br>| root       | ::1        |<br>|            | localhost  |<br>| xxxxxxxxxx | localhost  |<br>| numbers    | localhost  |<br>| root       | localhost  |<br>+————+————+<br>注意这里 root 只允许本地连接，最高权限的root用户只允许本地连接，所以其他用户也就只允许本地连接，<br>所以需要把root修改为允许所有连接，接着执行<br>mysql&gt; UPDATE user SET Host = ‘%’ WHERE User = ‘root’ AND Host=’localhost’;<br>mysql&gt; FLUSH PRIVILEGES;     – 使修改生效</p>
+<h2 id="伪静态配置"><a href="#伪静态配置" class="headerlink" title="伪静态配置"></a>伪静态配置</h2><h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>if (!-d $request_filename){<br>    set $rule_0 1$rule_0;<br>}<br>if (!-f $request_filename){<br>    set $rule_0 2$rule_0;<br>}<br>if ($rule_0 = “21”){<br>    rewrite ^/(.*)$ /index.php?s=/$1 last;<br>}</p>
+<h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><IfModule mod_rewrite.c>
+ RewriteEngine on
+ RewriteBase /
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]
+</IfModule>
+
+
+<p>导入源码后，要对站点进行设置<br>子目录绑定 public<br>网站目录-运行目录，选择 /public</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/18/%E5%AE%9D%E5%A1%94/" data-id="cl1wa8w3u000eullham4gfn5t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sqlite3操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2020-08-13T12:11:07.000Z" itemprop="datePublished">2020-08-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="查看所有表命令"><a href="#查看所有表命令" class="headerlink" title="查看所有表命令"></a>查看所有表命令</h2><p>.table</p>
+<h2 id="查看某个表结构"><a href="#查看某个表结构" class="headerlink" title="查看某个表结构"></a>查看某个表结构</h2><p>.schema tableName</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/" data-id="cl1wa8w3r000aullhhvdvh154" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AndroidStudio使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-08-04T04:52:19.000Z" itemprop="datePublished">2020-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/">AndroidStudio使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="gradle-版本，在-gradle-上可查看"><a href="#gradle-版本，在-gradle-上可查看" class="headerlink" title="gradle 版本，在 ~/.gradle 上可查看"></a>gradle 版本，在 ~/.gradle 上可查看</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/" data-id="cl1wa8w3n0004ullhh0g21hsj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-抖音探讨" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/18/%E6%8A%96%E9%9F%B3%E6%8E%A2%E8%AE%A8/" class="article-date">
+  <time datetime="2020-07-18T13:44:27.000Z" itemprop="datePublished">2020-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/18/%E6%8A%96%E9%9F%B3%E6%8E%A2%E8%AE%A8/">抖音探讨</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="scheme"><a href="#scheme" class="headerlink" title="scheme"></a>scheme</h2><ul>
+<li><p>打开个人主页，先在个人主页分享出链接，然后用浏览器打开，就能看到。比如<br><a href="https://v.douyin.com/JYRY2V6/" target="_blank" rel="noopener">https://v.douyin.com/JYRY2V6/</a><br>用浏览器打开是：<a href="https://www.iesdouyin.com/share/user/110929513923?u_code=19d7jlbfb&amp;sec_uid=MS4wLjABAAAA5DhDrgqM_cKIhGoDjQnqiUD8LpLeHJ3MHE1ksQC_YhM&amp;timestamp=1595003518&amp;utm_source=copy&amp;utm_campaign=client_share&amp;utm_medium=android&amp;share_app_name=douyin" target="_blank" rel="noopener">https://www.iesdouyin.com/share/user/110929513923?u_code=19d7jlbfb&amp;sec_uid=MS4wLjABAAAA5DhDrgqM_cKIhGoDjQnqiUD8LpLeHJ3MHE1ksQC_YhM&amp;timestamp=1595003518&amp;utm_source=copy&amp;utm_campaign=client_share&amp;utm_medium=android&amp;share_app_name=douyin</a><br>“am start -a android.intent.action.VIEW -d snssdk1128://user/profile/110929513923”</p>
+</li>
+<li><p>打开作品，把作品的分享链接用浏览器打开，就能看到。<br>比如 <a href="https://v.douyin.com/JYdM9Wg/" target="_blank" rel="noopener">https://v.douyin.com/JYdM9Wg/</a><br>用浏览器打开是：<a href="https://www.iesdouyin.com/share/video/6843738111751539976/?region=CN&amp;mid=6843738121620785934&amp;u_code=19d7jlbfb&amp;titleType=title&amp;utm_source=copy_link&amp;utm_campaign=client_share&amp;utm_medium=android&amp;app=aweme" target="_blank" rel="noopener">https://www.iesdouyin.com/share/video/6843738111751539976/?region=CN&amp;mid=6843738121620785934&amp;u_code=19d7jlbfb&amp;titleType=title&amp;utm_source=copy_link&amp;utm_campaign=client_share&amp;utm_medium=android&amp;app=aweme</a><br>“am start -a android.intent.action.VIEW -d snssdk1128://aweme/detail/6843738111751539976”</p>
+</li>
+<li><p>进入直播，room_id取值跟上面两种方式一样<br>“am start -a android.intent.action.VIEW -d snssdk1128://live?room_id=6850773103255882510”</p>
+</li>
+</ul>
+<p>// 抖音火山<br>snssdk1128://user/profile/69587851093</p>
+<p>// 抖音极速版<br>snssdk2329</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/18/%E6%8A%96%E9%9F%B3%E6%8E%A2%E8%AE%A8/" data-id="cl1wa8w47000fullhb4yhduhd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-一些开发问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/09/%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-07-09T07:28:03.000Z" itemprop="datePublished">2020-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/09/%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">一些开发问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用淘宝镜像安装可以这么用"><a href="#使用淘宝镜像安装可以这么用" class="headerlink" title="使用淘宝镜像安装可以这么用"></a>使用淘宝镜像安装可以这么用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/09/%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" data-id="cl1wa8w3r000bullhhure2a2w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/24/Linux%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-06-24T01:59:24.000Z" itemprop="datePublished">2020-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/24/Linux%E8%AE%B0%E5%BD%95/">Linux记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="安装pm2遇到的问题及解决"><a href="#安装pm2遇到的问题及解决" class="headerlink" title="安装pm2遇到的问题及解决"></a>安装pm2遇到的问题及解决</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><pre><code>* 安装命令：npm install pm2 -g
+<figure class="highlight plain"><figcaption><span>-></span><a href="/usr/local/nodejs/lib/node_modules/pm2/bin/pm2">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;bin&#x2F;pm2-dev -&gt; &#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;lib&#x2F;node_modules&#x2F;pm2&#x2F;bin&#x2F;pm2-dev</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;bin&#x2F;pm2-docker -&gt; &#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;lib&#x2F;node_modules&#x2F;pm2&#x2F;bin&#x2F;pm2-docker</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;bin&#x2F;pm2-runtime -&gt; &#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;lib&#x2F;node_modules&#x2F;pm2&#x2F;bin&#x2F;pm2-runtime</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules&#x2F;pm2&#x2F;node_modules&#x2F;chokidar&#x2F;node_modules&#x2F;fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;linux&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)</span><br><span class="line">npm WARN ws@7.2.5 requires a peer of bufferutil@^4.0.1 but none is installed. You must install peer dependencies yourself.</span><br><span class="line">npm WARN ws@7.2.5 requires a peer of utf-8-validate@^5.0.2 but none is installed. You must install peer dependencies yourself.</span><br></pre></td></tr></table></figure></code></pre><h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><pre><code>vi /etc/profile # 在PATH后，添加路径 /usr/local/nodejs/bin
+source /etc/profile # 让刚才的修改生效</code></pre><h4 id="修改远程端口为2202"><a href="#修改远程端口为2202" class="headerlink" title="修改远程端口为2202"></a>修改远程端口为2202</h4><p><code>$ vi /etc/ssh/sshd_config</code><br>    将Port 22，改为 Port 2202</p>
+<pre><code>防火墙允许此端口对外开放
+firewall-cmd --zone=public --add-port=2202/tcp --permanent
+firewall-cmd --reload   // 重启防火墙，让设置生效
+
+重启ssh服务
+systemctl restart sshd.service</code></pre><h4 id="git-443-No-route-to-host"><a href="#git-443-No-route-to-host" class="headerlink" title="git 443 No route to host"></a>git 443 No route to host</h4><p>vi /etc/hosts/ 加地址 如 xx.xx.xx.xx github.com</p>
+<h4 id="gitee-443-No-route-to-host"><a href="#gitee-443-No-route-to-host" class="headerlink" title="gitee 443 No route to host"></a>gitee 443 No route to host</h4><p>vi /etc/hosts/ 加地址 如 xx.xx.xx.xx gitee.com</p>
+<h4 id="查看端口号运行情况"><a href="#查看端口号运行情况" class="headerlink" title="查看端口号运行情况"></a>查看端口号运行情况</h4><p>lsof -i:端口号</p>
+<h4 id="添加计划任务"><a href="#添加计划任务" class="headerlink" title="添加计划任务"></a>添加计划任务</h4><p>crontab -e<br>30 1 * * * /home/crontab/mongod_bak.sh #表示每天凌晨1点30执行备份</p>
+<p>/sbin/service crond reload #重新载入配置<br>chkconfig –level 35 crond on  #加入开机自动启动:<br>/sbin/service crond start   #启动服务<br>crontab -l #列出crontab文件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/24/Linux%E8%AE%B0%E5%BD%95/" data-id="cl1wa8w3o0005ullhedhfh8ro" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-autojs研究" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/09/autojs%E7%A0%94%E7%A9%B6/" class="article-date">
+  <time datetime="2020-06-09T07:14:35.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/autojs%E7%A0%94%E7%A9%B6/">autojs研究</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="脚本切入口"><a href="#脚本切入口" class="headerlink" title="脚本切入口"></a>脚本切入口</h3><pre><code>/Users/chenk/Documents/code/github_code/AA-my-project/ck-Auto/autojs/src/main/java/com/stardust/autojs/engine/RhinoJavaScriptEngine.kt</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/09/autojs%E7%A0%94%E7%A9%B6/" data-id="cl1wa8w3p0008ullh3v9wfcl1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-安卓开发一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/" class="article-date">
+  <time datetime="2020-05-05T12:34:04.000Z" itemprop="datePublished">2020-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/">安卓开发一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="四大组件"><a href="#四大组件" class="headerlink" title="四大组件"></a>四大组件</h3><h4 id="Android活动组件"><a href="#Android活动组件" class="headerlink" title="Android活动组件"></a>Android活动组件</h4><h4 id="Android-服务组件"><a href="#Android-服务组件" class="headerlink" title="Android 服务组件"></a>Android 服务组件</h4><h4 id="Android-广播组件"><a href="#Android-广播组件" class="headerlink" title="Android 广播组件"></a>Android 广播组件</h4><h4 id="Android-内容提供者组件"><a href="#Android-内容提供者组件" class="headerlink" title="Android 内容提供者组件"></a>Android 内容提供者组件</h4><h4 id="尺寸单位"><a href="#尺寸单位" class="headerlink" title="尺寸单位"></a>尺寸单位</h4><ul>
+<li>dp 主要用来设置边距、组件大小</li>
+<li>sp 可伸缩像素，主要用来设置字体大小</li>
+</ul>
+<h4 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h4><ul>
+<li>drawable 放资源文件、9patch等</li>
+<li>mipmap 放应用程序启动图标</li>
+</ul>
+<h4 id="外部存储和内部存储区别"><a href="#外部存储和内部存储区别" class="headerlink" title="外部存储和内部存储区别"></a>外部存储和内部存储区别</h4><ul>
+<li>外部存储，手机连接电脑是，能在电脑上看到的文件，就是外部存储</li>
+</ul>
+<h4 id="读写外部存储文件"><a href="#读写外部存储文件" class="headerlink" title="读写外部存储文件"></a>读写外部存储文件</h4><ul>
+<li>读 FileInputStream</li>
+<li>写 FileOutputStream</li>
+</ul>
+<h4 id="URI-和-URL-的区别"><a href="#URI-和-URL-的区别" class="headerlink" title="URI 和 URL 的区别"></a>URI 和 URL 的区别</h4><ul>
+<li>URI 统一资源标识符，不局限于客户端和服务器</li>
+<li>URL 统一资源定位符，能定义网站上的一切资源</li>
+</ul>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><ul>
+<li>子线程不允许操作主线程中的组件，用Handler</li>
+</ul>
+<h4 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h4><ul>
+<li><p>TabLayout<br>tabIconTint 设置文字上面图标的颜色</p>
+</li>
+<li><p>新建的项目 MainActivity 会出现红色曲线，在该项目的 build.gradle 下放一行<br>implementation ‘androidx.lifecycle:lifecycle-extensions:2.2.0’</p>
+</li>
+<li><p>dx 所在路径 ~/Library/Android/sdk/build-tools/29.0.3<br>dx 可以将jar/class文件转换为dex文件，命令如下<br>dx –dex –output xxx.dex xxx.jar<br>或 dx –dex –output xxx.dex xxx.class</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/" data-id="cl1wa8w3s000cullhamttf1qj" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -115,6 +514,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -146,7 +550,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -159,7 +563,23 @@
       <ul>
         
           <li>
-            <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">Kali Linux 渗透 Wifi 初探</a>
+            <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/08/Android-Killer/">Android-Killer</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/">AndroidStudio使用</a>
           </li>
         
       </ul>
@@ -174,7 +594,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 CK Jiang<br>
+      &copy; 2022 CK Jiang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
