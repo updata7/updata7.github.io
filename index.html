@@ -64,6 +64,564 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-逆向工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time datetime="2022-05-15T03:13:05.000Z" itemprop="datePublished">2022-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/">逆向工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PC 逆向工具及使用<br>OD <a href="https://www.ollydbg.de/" target="_blank" rel="noopener">https://www.ollydbg.de/</a><br>ec <a href="https://www.cheatengine.org/" target="_blank" rel="noopener">https://www.cheatengine.org/</a></p>
+<p>CFF Explorer <a href="https://download.cnet.com/CFF-Explorer/3000-2383_4-10431156.html" target="_blank" rel="noopener">https://download.cnet.com/CFF-Explorer/3000-2383_4-10431156.html</a></p>
+<p>DLL 搜索顺序<br>1、程序所在目录<br>2、当前目录<br>3、系统目录 C:\windows\system32<br>4、Windows目录 C:\windows<br>5、PATH环境变量的各个目录</p>
+<p>微软封印的技术<br>1、系统目录 C:\windows\system32<br>2、程序所在目录<br>3、当前目录<br>4、Windows目录 C:\windows<br>5、PATH环境变量的各个目录</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/" data-id="cl3we6412000no6lh7kjv5sdi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-x86-x64逆向分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2022-05-12T05:10:23.000Z" itemprop="datePublished">2022-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">x86/x64逆向分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>汇编语言的两种主流语体： Intel、AT&amp;T</p>
+<p>x64 RAX     64位寄存器<br>有16个通用寄存器  RCX RDX R8 R9   这四个寄存器存放函数参数<br>8个字节 每个字节8位</p>
+<ul>
+<li><p>x86 EAX   32位寄存器<br>有8个通用寄存器   4个字节 每个字节8位</p>
+</li>
+<li><p>16位 AX<br>AH 高8位  AL 低8位  2个字节，每个字节8位</p>
+</li>
+</ul>
+<p>操作码 + 操作数 = 指令</p>
+<p>lea 装载有效地址<br>lea rcx, addr</p>
+<p>函数序言、函数尾声<br>x86<br>    序言:<br>        push ebp<br>        mov  ebp, esp<br>        sub  esp, 0CCh</p>
+<pre><code>尾声:
+    move esp, ebp
+    pop  ebp</code></pre><p>逆向生长的堆栈<br>栈是内存，会存放临时变量会紧要的数据<br>PUSH 减法操作<br>POP 加法操作<br>栈顶：RSP(x64) / ESP(x86)<br>栈底：EBP</p>
+<p>堆 低地址<br>栈 高地址</p>
+<p>EIP 寄存器 存储CPU即将要执行的指令</p>
+<p>HEX，Hexadecimal ，十六进制。<br>DEC，Decimal ，十进制。<br>OCT，Octal ，八进制。<br>BIN，Binary ，二进制。</p>
+<p>栈的噪音<br>CALL等价于：PUSH + JMP<br>RET 等价于：POP + JMP</p>
+<p>内存<br>dd dc du</p>
+<p>汇编指令<br>mov eax, [0x5]   ==&gt;&gt; eax = *((int *)0x5)</p>
+<p>JE 如果上次比较 A = B 就跳<br>JMP 无条件跳转<br>push 5      —–&gt;      esp -= 4(32位设备)  *((int *) esp) = 5<br>push eax    —–&gt;      esp -= 4(32位设备)  *(int *) esp) = eax<br>pop  eax    —–&gt;      esp += 4(32位设备)  eax = *((int *) esp)<br>call 地址    —–&gt;      push eip(call的下一条指令); jmp 地址<br>ret         —–&gt;      pop eip</p>
+<p>Intel CPU 的四个特权级<br>1、Ring 0   内核层、驱动层<br>2、Ring 1   未使用<br>3、Ring 2   未使用<br>4、Ring 3   用户层</p>
+<p>更高层次的对抗<br>编写驱动程序</p>
+<p>字节码<br>新跳转指令中的数据 = 跳转的地址 - 原地址 - 跳转指令的长度</p>
+<p>IAT 导入地址表</p>
+<p>DLL 远程调试<br>1、setdll.exe 放到要注入的exe下，之后以管理员的权限打开cmd<br>2、执行注入要执行的exe setdll.exe /d:xxx.dll xxx.exe<br>3、visual studio 打开dll项目<br>    设置为启动项，右键项目-属性-调试-远程命令-输入要注入的exe的绝对路径-调试器类型-混合-常规-输出目录-跟要注入的exe同个目录</p>
+<p>调试工具</p>
+<p>微软官网<br>DebugView<br>windbg</p>
+<p>OD<br>ctrl+A 分析<br>esc 跳到定义处时返回用此按键<br>Alt + 退格键 撤销所选部分的修改<br>Ctrl+G 转到某个地址</p>
+<p>eax 函数返回值</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" data-id="cl3we640y000ho6lh5ltr2don" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-frida" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/11/frida/" class="article-date">
+  <time datetime="2022-05-11T04:21:18.000Z" itemprop="datePublished">2022-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/11/frida/">frida</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><ul>
+<li>Java.available    // 判断程序是否已经在Java VM 加载</li>
+</ul>
+<h2 id="终端命令"><a href="#终端命令" class="headerlink" title="终端命令"></a>终端命令</h2><ul>
+<li><p>frida -U -l hook.js 包名      // 对某个应用执行 hook.js 里面的代码</p>
+</li>
+<li><p>frida -U -l hook.js 包名 tee -ai log      // tee -ai log 将输出存档到当前目录的 log 文件下</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/05/11/frida/" data-id="cl3we640r000ao6lh8v9m5ufx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-objection初探" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/10/objection%E5%88%9D%E6%8E%A2/" class="article-date">
+  <time datetime="2022-05-10T14:14:07.000Z" itemprop="datePublished">2022-05-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/10/objection%E5%88%9D%E6%8E%A2/">objection初探</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>注入应用后进入交互界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ objection -g packageName explore</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看内存中加载的库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ memory list modules</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看库的导出函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ memory list exports libssl.so</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将结果保存到json文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ memory list exports libart.so --json &#x2F;path&#x2F;libart.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>搜索整个内存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ memory search --string --offsets-only</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提取整个或部分内存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ memory dump all from_base</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动Activity或Service</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ android intent launch_activity xxx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看当前可用Activity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ android hooking list activities</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出内存中所有的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ android hooking list classes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出所有包含关键词的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ android hooking search classes matchkey(关键词)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出内存中所有含有关键词的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ android hooking search methods matchkey(关键词)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>窥视某个类的所有方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ android hooking watch class android.bluetooth.BluetoothDevice</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/05/10/objection%E5%88%9D%E6%8E%A2/" data-id="cl3we640w000fo6lh981c5ruf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Kotlin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/26/Kotlin/" class="article-date">
+  <time datetime="2022-04-26T02:53:11.000Z" itemprop="datePublished">2022-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/26/Kotlin/">Kotlin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问号? 表示可为空</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/26/Kotlin/" data-id="cl3we640q0009o6lhgmoa4dob" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tmux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/24/tmux/" class="article-date">
+  <time datetime="2022-04-24T11:45:28.000Z" itemprop="datePublished">2022-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/24/tmux/">tmux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="tmux-terminal-multiplexer-终端复用器"><a href="#tmux-terminal-multiplexer-终端复用器" class="headerlink" title="tmux (terminal multiplexer,终端复用器)"></a>tmux (terminal multiplexer,终端复用器)</h4><ul>
+<li><p>启动新tmux窗口命令<br>tmux<br>或 tmux new -s ck (-s 表示 session会话，新窗口名字 ck)</p>
+</li>
+<li><p>在tmux窗口下再新建窗口<br>先按 ctrl(control) + b<br>再按 c</p>
+</li>
+<li><p>退出当前窗口<br>先按 ctrl(control) + b<br>再输入 exit</p>
+</li>
+<li><p>Ctrl(control)+b s：列出所有会话（所有窗口）</p>
+</li>
+<li><p>Ctrl(control)+b w: 列出当前tmux窗口的 所有会话</p>
+</li>
+<li><p>tmux ls 列出当前所有tmux窗口</p>
+</li>
+<li><p>tmux select-window -t <window-number> 切换窗口</p>
+</li>
+<li><p>tmux a 进入第一个tmux窗口</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/24/tmux/" data-id="cl3we640x000go6lh8d6l8j6e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-aapt一些命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/19/aapt%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2022-04-19T02:16:14.000Z" itemprop="datePublished">2022-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/19/aapt%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/">aapt一些命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>查看应用包名和Activity<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aapt dump badging apk路径</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/19/aapt%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" data-id="cl3we640o0006o6lh3tf9dhaj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-安卓逆向二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%BA%8C/" class="article-date">
+  <time datetime="2022-04-13T15:25:15.000Z" itemprop="datePublished">2022-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%BA%8C/">安卓逆向二</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><h4 id="java开发环境"><a href="#java开发环境" class="headerlink" title="java开发环境"></a>java开发环境</h4><ul>
+<li>JDK — java开发环境集 (Java Development Kit)</li>
+<li>JRE — 运行所需环境 (Java Runtime Environment，可以让电脑执行Java应用程序。JRE内部有一个Java虚拟机，JVM，以及一些标准库)</li>
+</ul>
+<h4 id="Android所需环境"><a href="#Android所需环境" class="headerlink" title="Android所需环境"></a>Android所需环境</h4><ul>
+<li>SDK —（Software Development Kit）软件开发工具包</li>
+<li>NDK — Native Development Kit 用来给安卓手机开发游戏用的，用于java和c++的接口交互</li>
+</ul>
+<h3 id="apk-文件结构"><a href="#apk-文件结构" class="headerlink" title="apk 文件结构"></a>apk 文件结构</h3><ul>
+<li>将apk后缀改成zip后缀，可查看文件结构</li>
+<li>assets: 不需要通过AAPT编译的静态资源</li>
+<li>lib: 存放 .so 文件，该文件夹下有时会多一个层级，这是根据不同CPU型号而划分的，如 ARM，ARM-v7a，x86等</li>
+<li>META-INF: 签名文件夹</li>
+<li>dex: 存放代码和可执行文件</li>
+<li>AndroidManifest.xml: 配置清单文件</li>
+<li>resources.arsc: 资源索引表</li>
+<li>res: 需要通过AAPT编译的资源，在资源索引表中会生产索引</li>
+</ul>
+<h3 id="apk-安装流程"><a href="#apk-安装流程" class="headerlink" title="apk 安装流程"></a>apk 安装流程</h3><h4 id="几个重要目录"><a href="#几个重要目录" class="headerlink" title="几个重要目录"></a>几个重要目录</h4><ul>
+<li>system/app 系统自带的应用程序，获得adb root 权限才能删除</li>
+<li>data/app  用户程序安装目录，安装时把apk文件复制到此目录，此apk可以导出直接重新安装</li>
+<li>data/data 存放应用程序的数据</li>
+<li>data/dalvik-cache     将apk中的dex文件安装到dalvik-cache目录下（dex文件是dalvik虚拟机的可执行文件，其大小约为原始apk的四分之一）</li>
+<li>data/system/packages.xml  里面会有对应的apk的信息</li>
+</ul>
+<h4 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h4><ul>
+<li>复制apk安装包到/data/app目录下，解压并扫描安装包，把dex文件（Dalvik字节码）保存到dalvik-cache目录，并在/data/data目录下创建对应的应用数据</li>
+</ul>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><ul>
+<li>删除安装过程中在上述三个目录的建的文件</li>
+</ul>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><h4 id="java-虚拟机-JVM"><a href="#java-虚拟机-JVM" class="headerlink" title="java 虚拟机 JVM"></a>java 虚拟机 JVM</h4><ul>
+<li>java字节码，基于栈结构</li>
+</ul>
+<h4 id="dalvik虚拟机"><a href="#dalvik虚拟机" class="headerlink" title="dalvik虚拟机"></a>dalvik虚拟机</h4><ul>
+<li>jit机制</li>
+<li>Android 5.0以下（不含5.0）</li>
+<li>dalvik可执行文件体积更小，基于寄存器架构</li>
+<li><font color=red>.dex =&gt; dexopt =&gt; .odex dalvik加载执行的是 odex文件，位于 /system/bin/dexopt </font></li>
+<li>/system/bin/dexopt</li>
+</ul>
+<h4 id="art虚拟机"><a href="#art虚拟机" class="headerlink" title="art虚拟机"></a>art虚拟机</h4><ul>
+<li>aot机制</li>
+<li>Android5.0以上（含5.0）</li>
+<li><font color=red>.dex =&gt; dex2oat =&gt; .oat art 加载执行的是oat文件，dex2oat 位于 /system/bin/dex2oat</font></li>
+<li>系统启动流程：/system/app ==&gt; /data/app ==&gt; /system/framework</li>
+</ul>
+<h3 id="dalvik字节码类型"><a href="#dalvik字节码类型" class="headerlink" title="dalvik字节码类型"></a>dalvik字节码类型</h3><p>![image-20200506105406084](/Users/chenk/Library/Application Support/typora-user-images/image-20200506105406084.png)</p>
+<p>![image-20200506105754425](/Users/chenk/Library/Application Support/typora-user-images/image-20200506105754425.png)</p>
+<p>###![image-20200506104145925](/Users/chenk/Library/Application Support/typora-user-images/image-20200506104145925.png) </p>
+<h3 id="dalvik-指令集"><a href="#dalvik-指令集" class="headerlink" title="dalvik 指令集"></a>dalvik 指令集</h3><ul>
+<li><p>格式</p>
+<p>基础字节码 - 名称后缀/字节码后缀 目的寄存器 源寄存器</p>
+<p>名称后缀是 wide，表示数据宽度为64位</p>
+<p>字节码后缀是 from16，表示源寄存器为16位</p>
+</li>
+<li><p>例子</p>
+<p>move-wide/from16 vAA, vBBBB</p>
+<p>move 为基础字节码，即opcode</p>
+<p>wide为名称后缀，标识指令操作的数据宽度是64位</p>
+<p>from16为字节码后缀，标识源为一个16位的寄存器引用变量</p>
+<p>vAA为目的寄存器，它始终在源前面，取值范围 v0～v255（2的8次方？？）</p>
+<p>vBBBB为源寄存器，取值范围为 v0～v65535（2的16次方？？？）</p>
+</li>
+<li><p>说明</p>
+<p>dalvik指令大多数指令都用到了寄存器作为目的的操作数或源操作数，即把寄存器作为一个容器，用来存放东西。其中 A/B/C/D/E/F/G/H 代表一个4位的数，AA/BB/CC/DD… 代表一个8位的数，AAAA/BBBB… 代表一个64位的数</p>
+</li>
+<li><p>13种dalvik指令</p>
+<ul>
+<li><p>空操作指令</p>
+<ul>
+<li>nop，值为00，通常用于代码对齐，无实际操作</li>
+</ul>
+</li>
+<li><p>数据操作指令</p>
+<ul>
+<li><p>move</p>
+<ul>
+<li><p>有三个作用</p>
+<p>1、进行赋值操作；</p>
+<p>2、move-result 接收方法返回值；</p>
+<p>3、处理异常的操作</p>
+</li>
+<li><p>例子</p>
+<p>move-result-void 返回值为空</p>
+<p>move-result vAA     返回32位的非对象值，寄存器是8位</p>
+<p>move-result-object vAA    返回值为对象，寄存器是8位</p>
+<p>move-exception vAA 将异常保存到寄存器vAA</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>数据定义指令</p>
+<ul>
+<li>const</li>
+</ul>
+</li>
+<li><p>数组</p>
+<ul>
+<li>array-length vA, vB     </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%BA%8C/" data-id="cl3we640z000jo6lhe0km6kgf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-安卓逆向一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B8%80/" class="article-date">
+  <time datetime="2022-04-13T14:32:07.000Z" itemprop="datePublished">2022-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B8%80/">安卓逆向一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="apk打包流程"><a href="#apk打包流程" class="headerlink" title="apk打包流程"></a>apk打包流程</h3><h4 id="资源处理"><a href="#资源处理" class="headerlink" title="资源处理"></a>资源处理</h4><ul>
+<li>aapt处理资源文件，分析AndroidMainifest.xml中的资源文件，生成R.java和resources.arsc文件，<br>aidl处理aidl文件，生成对应的java接口文件</li>
+</ul>
+<h4 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h4><ul>
+<li>将上一过程产生的R.java和java接口文件、工程源代码文件，一起通过Java Compiler编译成.class文件，达成jar包（这里可以加入代码混淆）</li>
+<li>与第三方的jar包一起通过dx工具转换成.dex文件</li>
+<li>通过apkbuilder工具aapt生成的resources.arsc、上述的.dex文件、其他资源一起打包成未签名的apk</li>
+</ul>
+<h4 id="添加签名"><a href="#添加签名" class="headerlink" title="添加签名"></a>添加签名</h4><ul>
+<li>通过Jarsigner对生成的未签名的apk进行签名</li>
+<li>通过zipalign对签名后的apk进行处理，使apk中所有资源文件距离文件起始偏移为4字节的整倍数，目的是为了在通过内存映射访问apk文件时更快</li>
+</ul>
+<h3 id="APK反编译"><a href="#APK反编译" class="headerlink" title="APK反编译"></a>APK反编译</h3><ul>
+<li>apktool: apktool d -s xx.apk 能得到 classes.dex 一般用这种方式来反编译apk </li>
+<li>dex2jar: 将 dex 文件转化为 jar 文件</li>
+<li>jd-gui: 将Jar包文件反编译成java源文件</li>
+</ul>
+<h3 id="查看-Android手机CPU类型"><a href="#查看-Android手机CPU类型" class="headerlink" title="查看 Android手机CPU类型"></a>查看 Android手机CPU类型</h3><p>adb shell getprop ro.product.cpu.abi</p>
+<p>armeabiv-v7a(32位): 第7代及以上的 ARM 处理器。2011年5月以后的生产的大部分Android设备都使用它.<br>arm64-v8a(64位): 第8代、64位ARM处理器，现在已经是主流版本，三星 Galaxy S6是其中之一。<br>armeabi: 第5代、第6代的ARM处理器，早期的手机用的比较多。<br>x86: 平板、模拟器用得比较多。<br>x86_64: 64位的平板。</p>
+<h3 id="谷歌大手机用这个指令发-frida-server-到手机"><a href="#谷歌大手机用这个指令发-frida-server-到手机" class="headerlink" title="谷歌大手机用这个指令发 frida-server 到手机"></a>谷歌大手机用这个指令发 frida-server 到手机</h3><p>adb push /Users/chenk/Documents/code/github_code/Android/tool/frida-server-15.1.20-android-arm /data/local/tmp/frida-server</p>
+<h3 id="查看-CPU信息"><a href="#查看-CPU信息" class="headerlink" title="查看 CPU信息"></a>查看 CPU信息</h3><p>cat /proc/cpuinfo</p>
+<h3 id="Brida"><a href="#Brida" class="headerlink" title="Brida"></a>Brida</h3><p>Brida是一个Burp的插件<br>Brida是一座连接Burp和Frida的桥<br>解决 加密、解密、Fuzz、Scan一条龙服务</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B8%80/" data-id="cl3we640y000io6lhdx8qf9p6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
@@ -125,394 +683,7 @@ git stash pop</code></pre></li>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cl1wax64d0007rylhb0t66gi7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mac-php开发环境" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-date">
-  <time datetime="2020-10-27T12:47:10.000Z" itemprop="datePublished">2020-10-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="开启Apache服务"><a href="#开启Apache服务" class="headerlink" title="开启Apache服务"></a>开启Apache服务</h2><h3 id="mac有自带apache和php-直接打开命令行即可"><a href="#mac有自带apache和php-直接打开命令行即可" class="headerlink" title="mac有自带apache和php 直接打开命令行即可"></a>mac有自带apache和php 直接打开命令行即可</h3><ul>
-<li><p>首先切换到root用户 sudo -i</p>
-</li>
-<li><p>接着查看80端口是否被暂用 lsof</p>
-</li>
-<li><p>查看apache 版本  httpd -v</p>
-</li>
-<li><p>开启apache     apachectl start</p>
-</li>
-<li><p>重启apache  apachectl restart</p>
-</li>
-<li><p>关闭apache  apachectl stop</p>
-</li>
-<li><p>运行 127.0.0.1,显示it works表示apache开启成功</p>
-</li>
-</ul>
-<h2 id="开启php"><a href="#开启php" class="headerlink" title="开启php"></a>开启php</h2><h3 id="进入路径-etc-apache2-开启apache配置文件httpd-conf-开启php模块"><a href="#进入路径-etc-apache2-开启apache配置文件httpd-conf-开启php模块" class="headerlink" title="进入路径/etc/apache2 开启apache配置文件httpd.conf 开启php模块"></a>进入路径/etc/apache2 开启apache配置文件httpd.conf 开启php模块</h3><ul>
-<li>找到类似这行，然后把注释去掉 LoadModule php7_module libexec/apache2/libphp7.so  </li>
-</ul>
-<h2 id="在-etc-apache2-httpd-conf-查看网站服务器根目录"><a href="#在-etc-apache2-httpd-conf-查看网站服务器根目录" class="headerlink" title="在 /etc/apache2/httpd.conf 查看网站服务器根目录"></a>在 /etc/apache2/httpd.conf 查看网站服务器根目录</h2><h3 id="查找-DocumentRoot，能看到网站跟目录"><a href="#查找-DocumentRoot，能看到网站跟目录" class="headerlink" title="查找  DocumentRoot，能看到网站跟目录"></a>查找  DocumentRoot，能看到网站跟目录</h3><h2 id="重启Apache服务器，在网站服务器根目录，写个test-php"><a href="#重启Apache服务器，在网站服务器根目录，写个test-php" class="headerlink" title="重启Apache服务器，在网站服务器根目录，写个test.php"></a>重启Apache服务器，在网站服务器根目录，写个test.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    echo &#39;hello xym:this mac default apache !!! 2018.6.21!!&#39;;</span><br><span class="line">    phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>到浏览器执行 127.0.0.1/test.php，能显示php的相关信息，就是正常的</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="cl1wax64f000arylh2t1z1z9n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android-Killer" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/08/Android-Killer/" class="article-date">
-  <time datetime="2020-09-07T16:47:54.000Z" itemprop="datePublished">2020-09-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/08/Android-Killer/">Android-Killer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="解包分析时，APKTOOL管理器选择默认的"><a href="#解包分析时，APKTOOL管理器选择默认的" class="headerlink" title="解包分析时，APKTOOL管理器选择默认的"></a>解包分析时，APKTOOL管理器选择默认的</h2><h2 id="重新编译时，APKTOOL管理器选择2-4-1的"><a href="#重新编译时，APKTOOL管理器选择2-4-1的" class="headerlink" title="重新编译时，APKTOOL管理器选择2.4.1的"></a>重新编译时，APKTOOL管理器选择2.4.1的</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/Android-Killer/" data-id="cl1wax64c0005rylh8x4m742i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-宝塔" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/" class="article-date">
-  <time datetime="2020-08-17T16:53:37.000Z" itemprop="datePublished">2020-08-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数据库，远程访问不了</p>
-<p>终端输入<br>mysql -uroot -p</p>
-<p>输入密码后，以下命令是在mysql内完成，仍然是在终端<br>mysql&gt; use mysql;<br>mysql&gt; select user, Host from user;<br>+————+————+<br>| user       | Host       |<br>+————+————+<br>| xxxxxxxxxx | %          |<br>| numbers    | %          |<br>| root       | 127.0.0.1  |<br>|            | 4z-k20-a35 |<br>| root       | 4z-k20-a35 |<br>| root       | ::1        |<br>|            | localhost  |<br>| xxxxxxxxxx | localhost  |<br>| numbers    | localhost  |<br>| root       | localhost  |<br>+————+————+<br>注意这里 root 只允许本地连接，最高权限的root用户只允许本地连接，所以其他用户也就只允许本地连接，<br>所以需要把root修改为允许所有连接，接着执行<br>mysql&gt; UPDATE user SET Host = ‘%’ WHERE User = ‘root’ AND Host=’localhost’;<br>mysql&gt; FLUSH PRIVILEGES;     – 使修改生效</p>
-<h2 id="伪静态配置"><a href="#伪静态配置" class="headerlink" title="伪静态配置"></a>伪静态配置</h2><h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>if (!-d $request_filename){<br>    set $rule_0 1$rule_0;<br>}<br>if (!-f $request_filename){<br>    set $rule_0 2$rule_0;<br>}<br>if ($rule_0 = “21”){<br>    rewrite ^/(.*)$ /index.php?s=/$1 last;<br>}</p>
-<h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><IfModule mod_rewrite.c>
- RewriteEngine on
- RewriteBase /
- RewriteCond %{REQUEST_FILENAME} !-d
- RewriteCond %{REQUEST_FILENAME} !-f
- RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]
-</IfModule>
-
-
-<p>导入源码后，要对站点进行设置<br>子目录绑定 public<br>网站目录-运行目录，选择 /public</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/18/%E5%AE%9D%E5%A1%94/" data-id="cl1wax64v000frylh12ys5pue" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-sqlite3操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/" class="article-date">
-  <time datetime="2020-08-13T12:11:07.000Z" itemprop="datePublished">2020-08-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="查看所有表命令"><a href="#查看所有表命令" class="headerlink" title="查看所有表命令"></a>查看所有表命令</h2><p>.table</p>
-<h2 id="查看某个表结构"><a href="#查看某个表结构" class="headerlink" title="查看某个表结构"></a>查看某个表结构</h2><p>.schema tableName</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/" data-id="cl1wax64f000brylhhr8dfsvv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-AndroidStudio使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2020-08-04T04:52:19.000Z" itemprop="datePublished">2020-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/">AndroidStudio使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="gradle-版本，在-gradle-上可查看"><a href="#gradle-版本，在-gradle-上可查看" class="headerlink" title="gradle 版本，在 ~/.gradle 上可查看"></a>gradle 版本，在 ~/.gradle 上可查看</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/04/AndroidStudio%E4%BD%BF%E7%94%A8/" data-id="cl1wax6470001rylh0wyihb1x" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-抖音探讨" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/18/%E6%8A%96%E9%9F%B3%E6%8E%A2%E8%AE%A8/" class="article-date">
-  <time datetime="2020-07-18T13:44:27.000Z" itemprop="datePublished">2020-07-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/%E6%8A%96%E9%9F%B3%E6%8E%A2%E8%AE%A8/">抖音探讨</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="scheme"><a href="#scheme" class="headerlink" title="scheme"></a>scheme</h2><ul>
-<li><p>打开个人主页，先在个人主页分享出链接，然后用浏览器打开，就能看到。比如<br><a href="https://v.douyin.com/JYRY2V6/" target="_blank" rel="noopener">https://v.douyin.com/JYRY2V6/</a><br>用浏览器打开是：<a href="https://www.iesdouyin.com/share/user/110929513923?u_code=19d7jlbfb&amp;sec_uid=MS4wLjABAAAA5DhDrgqM_cKIhGoDjQnqiUD8LpLeHJ3MHE1ksQC_YhM&amp;timestamp=1595003518&amp;utm_source=copy&amp;utm_campaign=client_share&amp;utm_medium=android&amp;share_app_name=douyin" target="_blank" rel="noopener">https://www.iesdouyin.com/share/user/110929513923?u_code=19d7jlbfb&amp;sec_uid=MS4wLjABAAAA5DhDrgqM_cKIhGoDjQnqiUD8LpLeHJ3MHE1ksQC_YhM&amp;timestamp=1595003518&amp;utm_source=copy&amp;utm_campaign=client_share&amp;utm_medium=android&amp;share_app_name=douyin</a><br>“am start -a android.intent.action.VIEW -d snssdk1128://user/profile/110929513923”</p>
-</li>
-<li><p>打开作品，把作品的分享链接用浏览器打开，就能看到。<br>比如 <a href="https://v.douyin.com/JYdM9Wg/" target="_blank" rel="noopener">https://v.douyin.com/JYdM9Wg/</a><br>用浏览器打开是：<a href="https://www.iesdouyin.com/share/video/6843738111751539976/?region=CN&amp;mid=6843738121620785934&amp;u_code=19d7jlbfb&amp;titleType=title&amp;utm_source=copy_link&amp;utm_campaign=client_share&amp;utm_medium=android&amp;app=aweme" target="_blank" rel="noopener">https://www.iesdouyin.com/share/video/6843738111751539976/?region=CN&amp;mid=6843738121620785934&amp;u_code=19d7jlbfb&amp;titleType=title&amp;utm_source=copy_link&amp;utm_campaign=client_share&amp;utm_medium=android&amp;app=aweme</a><br>“am start -a android.intent.action.VIEW -d snssdk1128://aweme/detail/6843738111751539976”</p>
-</li>
-<li><p>进入直播，room_id取值跟上面两种方式一样<br>“am start -a android.intent.action.VIEW -d snssdk1128://live?room_id=6850773103255882510”</p>
-</li>
-</ul>
-<p>// 抖音火山<br>snssdk1128://user/profile/69587851093</p>
-<p>// 抖音极速版<br>snssdk2329</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/%E6%8A%96%E9%9F%B3%E6%8E%A2%E8%AE%A8/" data-id="cl1wax64w000grylh27m57vbl" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-一些开发问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/09/%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2020-07-09T07:28:03.000Z" itemprop="datePublished">2020-07-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/09/%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">一些开发问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用淘宝镜像安装可以这么用"><a href="#使用淘宝镜像安装可以这么用" class="headerlink" title="使用淘宝镜像安装可以这么用"></a>使用淘宝镜像安装可以这么用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/09/%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" data-id="cl1wax64g000crylh7o83bcw4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/24/Linux%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2020-06-24T01:59:24.000Z" itemprop="datePublished">2020-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/24/Linux%E8%AE%B0%E5%BD%95/">Linux记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="安装pm2遇到的问题及解决"><a href="#安装pm2遇到的问题及解决" class="headerlink" title="安装pm2遇到的问题及解决"></a>安装pm2遇到的问题及解决</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><pre><code>* 安装命令：npm install pm2 -g
-<figure class="highlight plain"><figcaption><span>-></span><a href="/usr/local/nodejs/lib/node_modules/pm2/bin/pm2">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;bin&#x2F;pm2-dev -&gt; &#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;lib&#x2F;node_modules&#x2F;pm2&#x2F;bin&#x2F;pm2-dev</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;bin&#x2F;pm2-docker -&gt; &#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;lib&#x2F;node_modules&#x2F;pm2&#x2F;bin&#x2F;pm2-docker</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;bin&#x2F;pm2-runtime -&gt; &#x2F;usr&#x2F;local&#x2F;nodejs&#x2F;lib&#x2F;node_modules&#x2F;pm2&#x2F;bin&#x2F;pm2-runtime</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules&#x2F;pm2&#x2F;node_modules&#x2F;chokidar&#x2F;node_modules&#x2F;fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;linux&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)</span><br><span class="line">npm WARN ws@7.2.5 requires a peer of bufferutil@^4.0.1 but none is installed. You must install peer dependencies yourself.</span><br><span class="line">npm WARN ws@7.2.5 requires a peer of utf-8-validate@^5.0.2 but none is installed. You must install peer dependencies yourself.</span><br></pre></td></tr></table></figure></code></pre><h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><pre><code>vi /etc/profile # 在PATH后，添加路径 /usr/local/nodejs/bin
-source /etc/profile # 让刚才的修改生效</code></pre><h4 id="修改远程端口为2202"><a href="#修改远程端口为2202" class="headerlink" title="修改远程端口为2202"></a>修改远程端口为2202</h4><p><code>$ vi /etc/ssh/sshd_config</code><br>    将Port 22，改为 Port 2202</p>
-<pre><code>防火墙允许此端口对外开放
-firewall-cmd --zone=public --add-port=2202/tcp --permanent
-firewall-cmd --reload   // 重启防火墙，让设置生效
-
-重启ssh服务
-systemctl restart sshd.service</code></pre><h4 id="git-443-No-route-to-host"><a href="#git-443-No-route-to-host" class="headerlink" title="git 443 No route to host"></a>git 443 No route to host</h4><p>vi /etc/hosts/ 加地址 如 xx.xx.xx.xx github.com</p>
-<h4 id="gitee-443-No-route-to-host"><a href="#gitee-443-No-route-to-host" class="headerlink" title="gitee 443 No route to host"></a>gitee 443 No route to host</h4><p>vi /etc/hosts/ 加地址 如 xx.xx.xx.xx gitee.com</p>
-<h4 id="查看端口号运行情况"><a href="#查看端口号运行情况" class="headerlink" title="查看端口号运行情况"></a>查看端口号运行情况</h4><p>lsof -i:端口号</p>
-<h4 id="添加计划任务"><a href="#添加计划任务" class="headerlink" title="添加计划任务"></a>添加计划任务</h4><p>crontab -e<br>30 1 * * * /home/crontab/mongod_bak.sh #表示每天凌晨1点30执行备份</p>
-<p>/sbin/service crond reload #重新载入配置<br>chkconfig –level 35 crond on  #加入开机自动启动:<br>/sbin/service crond start   #启动服务<br>crontab -l #列出crontab文件</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/24/Linux%E8%AE%B0%E5%BD%95/" data-id="cl1wax64b0004rylh695m73og" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-autojs研究" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/09/autojs%E7%A0%94%E7%A9%B6/" class="article-date">
-  <time datetime="2020-06-09T07:14:35.000Z" itemprop="datePublished">2020-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/autojs%E7%A0%94%E7%A9%B6/">autojs研究</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="脚本切入口"><a href="#脚本切入口" class="headerlink" title="脚本切入口"></a>脚本切入口</h3><pre><code>/Users/chenk/Documents/code/github_code/AA-my-project/ck-Auto/autojs/src/main/java/com/stardust/autojs/engine/RhinoJavaScriptEngine.kt</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/09/autojs%E7%A0%94%E7%A9%B6/" data-id="cl1wax64e0009rylh3u5e4hnb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cl3we640s000bo6lh49135ykb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -526,7 +697,7 @@ systemctl restart sshd.service</code></pre><h4 id="git-443-No-route-to-host"><a 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
   </nav>
 
 </section>
@@ -559,7 +730,7 @@ systemctl restart sshd.service</code></pre><h4 id="git-443-No-route-to-host"><a 
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -572,23 +743,23 @@ systemctl restart sshd.service</code></pre><h4 id="git-443-No-route-to-host"><a 
       <ul>
         
           <li>
-            <a href="/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">git常用命令</a>
+            <a href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/">逆向工具</a>
           </li>
         
           <li>
-            <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
+            <a href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">x86/x64逆向分析</a>
           </li>
         
           <li>
-            <a href="/2020/09/08/Android-Killer/">Android-Killer</a>
+            <a href="/2022/05/11/frida/">frida</a>
           </li>
         
           <li>
-            <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
+            <a href="/2022/05/10/objection%E5%88%9D%E6%8E%A2/">objection初探</a>
           </li>
         
           <li>
-            <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
+            <a href="/2022/04/26/Kotlin/">Kotlin</a>
           </li>
         
       </ul>

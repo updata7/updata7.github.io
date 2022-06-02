@@ -5,13 +5,17 @@
   
 
   
-  <title>归档: 2020/10 | CK的博客</title>
+  <title>x86/x64逆向分析 | CK的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="CK的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/10/index.html">
+  <meta name="description" content="汇编语言的两种主流语体： Intel、AT&amp;T x64 RAX     64位寄存器有16个通用寄存器  RCX RDX R8 R9   这四个寄存器存放函数参数8个字节 每个字节8位  x86 EAX   32位寄存器有8个通用寄存器   4个字节 每个字节8位  16位 AXAH 高8位  AL 低8位  2个字节，每个字节8位   操作码 + 操作数 &#x3D; 指令 lea 装载有效地址l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="x86&#x2F;x64逆向分析">
+<meta property="og:url" content="http://yoursite.com/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="CK的博客">
+<meta property="og:description" content="汇编语言的两种主流语体： Intel、AT&amp;T x64 RAX     64位寄存器有16个通用寄存器  RCX RDX R8 R9   这四个寄存器存放函数参数8个字节 每个字节8位  x86 EAX   32位寄存器有8个通用寄存器   4个字节 每个字节8位  16位 AXAH 高8位  AL 低8位  2个字节，每个字节8位   操作码 + 操作数 &#x3D; 指令 lea 装载有效地址l">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-12T05:10:23.000Z">
+<meta property="article:modified_time" content="2022-05-26T13:57:10.233Z">
 <meta property="article:author" content="CK Jiang">
 <meta name="twitter:card" content="summary">
   
@@ -62,40 +66,90 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="archive-article-date">
-  <time datetime="2020-10-27T12:47:10.000Z" itemprop="datePublished">10月 27</time>
+        <section id="main"><article id="post-x86-x64逆向分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2022-05-12T05:10:23.000Z" itemprop="datePublished">2022-05-12</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
+    <h1 class="article-title" itemprop="name">
+      x86/x64逆向分析
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>汇编语言的两种主流语体： Intel、AT&amp;T</p>
+<p>x64 RAX     64位寄存器<br>有16个通用寄存器  RCX RDX R8 R9   这四个寄存器存放函数参数<br>8个字节 每个字节8位</p>
+<ul>
+<li><p>x86 EAX   32位寄存器<br>有8个通用寄存器   4个字节 每个字节8位</p>
+</li>
+<li><p>16位 AX<br>AH 高8位  AL 低8位  2个字节，每个字节8位</p>
+</li>
+</ul>
+<p>操作码 + 操作数 = 指令</p>
+<p>lea 装载有效地址<br>lea rcx, addr</p>
+<p>函数序言、函数尾声<br>x86<br>    序言:<br>        push ebp<br>        mov  ebp, esp<br>        sub  esp, 0CCh</p>
+<pre><code>尾声:
+    move esp, ebp
+    pop  ebp</code></pre><p>逆向生长的堆栈<br>栈是内存，会存放临时变量会紧要的数据<br>PUSH 减法操作<br>POP 加法操作<br>栈顶：RSP(x64) / ESP(x86)<br>栈底：EBP</p>
+<p>堆 低地址<br>栈 高地址</p>
+<p>EIP 寄存器 存储CPU即将要执行的指令</p>
+<p>HEX，Hexadecimal ，十六进制。<br>DEC，Decimal ，十进制。<br>OCT，Octal ，八进制。<br>BIN，Binary ，二进制。</p>
+<p>栈的噪音<br>CALL等价于：PUSH + JMP<br>RET 等价于：POP + JMP</p>
+<p>内存<br>dd dc du</p>
+<p>汇编指令<br>mov eax, [0x5]   ==&gt;&gt; eax = *((int *)0x5)</p>
+<p>JE 如果上次比较 A = B 就跳<br>JMP 无条件跳转<br>push 5      —–&gt;      esp -= 4(32位设备)  *((int *) esp) = 5<br>push eax    —–&gt;      esp -= 4(32位设备)  *(int *) esp) = eax<br>pop  eax    —–&gt;      esp += 4(32位设备)  eax = *((int *) esp)<br>call 地址    —–&gt;      push eip(call的下一条指令); jmp 地址<br>ret         —–&gt;      pop eip</p>
+<p>Intel CPU 的四个特权级<br>1、Ring 0   内核层、驱动层<br>2、Ring 1   未使用<br>3、Ring 2   未使用<br>4、Ring 3   用户层</p>
+<p>更高层次的对抗<br>编写驱动程序</p>
+<p>字节码<br>新跳转指令中的数据 = 跳转的地址 - 原地址 - 跳转指令的长度</p>
+<p>IAT 导入地址表</p>
+<p>DLL 远程调试<br>1、setdll.exe 放到要注入的exe下，之后以管理员的权限打开cmd<br>2、执行注入要执行的exe setdll.exe /d:xxx.dll xxx.exe<br>3、visual studio 打开dll项目<br>    设置为启动项，右键项目-属性-调试-远程命令-输入要注入的exe的绝对路径-调试器类型-混合-常规-输出目录-跟要注入的exe同个目录</p>
+<p>调试工具</p>
+<p>微软官网<br>DebugView<br>windbg</p>
+<p>OD<br>ctrl+A 分析<br>esc 跳到定义处时返回用此按键<br>Alt + 退格键 撤销所选部分的修改<br>Ctrl+G 转到某个地址</p>
+<p>eax 函数返回值</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" data-id="cl3we640y000ho6lh5ltr2don" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          逆向工具
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/05/11/frida/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">frida</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

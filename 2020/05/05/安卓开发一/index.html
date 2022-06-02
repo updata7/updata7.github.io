@@ -7,15 +7,15 @@
   
   <title>安卓开发一 | CK的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="四大组件Android活动组件Android 服务组件Android 广播组件Android 内容提供者组件尺寸单位 dp 主要用来设置边距、组件大小 sp 可伸缩像素，主要用来设置字体大小  资源 drawable 放资源文件、9patch等 mipmap 放应用程序启动图标  外部存储和内部存储区别 外部存储，手机连接电脑是，能在电脑上看到的文件，就是外部存储  读写外部存储文件 读 File">
+  <meta name="description" content="学习路线ViewModel, ViewBinding, Lifecycle, LiveData, Room，NavigationOkHttp, Retrofit, RxJava, Dagger2Kotlin 和 Kotlin 协程  ViewModel 屏幕横向、竖向变化时，Activity 的 onCreate会执行，数据会重新加载，用ViewModel可以使数据的状态不受横竖屏的影响，原因是其">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安卓开发一">
 <meta property="og:url" content="http://yoursite.com/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/index.html">
 <meta property="og:site_name" content="CK的博客">
-<meta property="og:description" content="四大组件Android活动组件Android 服务组件Android 广播组件Android 内容提供者组件尺寸单位 dp 主要用来设置边距、组件大小 sp 可伸缩像素，主要用来设置字体大小  资源 drawable 放资源文件、9patch等 mipmap 放应用程序启动图标  外部存储和内部存储区别 外部存储，手机连接电脑是，能在电脑上看到的文件，就是外部存储  读写外部存储文件 读 File">
+<meta property="og:description" content="学习路线ViewModel, ViewBinding, Lifecycle, LiveData, Room，NavigationOkHttp, Retrofit, RxJava, Dagger2Kotlin 和 Kotlin 协程  ViewModel 屏幕横向、竖向变化时，Activity 的 onCreate会执行，数据会重新加载，用ViewModel可以使数据的状态不受横竖屏的影响，原因是其">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-05T12:34:04.000Z">
-<meta property="article:modified_time" content="2020-08-06T12:06:29.971Z">
+<meta property="article:modified_time" content="2022-05-29T14:47:05.575Z">
 <meta property="article:author" content="CK Jiang">
 <meta name="twitter:card" content="summary">
   
@@ -88,7 +88,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="四大组件"><a href="#四大组件" class="headerlink" title="四大组件"></a>四大组件</h3><h4 id="Android活动组件"><a href="#Android活动组件" class="headerlink" title="Android活动组件"></a>Android活动组件</h4><h4 id="Android-服务组件"><a href="#Android-服务组件" class="headerlink" title="Android 服务组件"></a>Android 服务组件</h4><h4 id="Android-广播组件"><a href="#Android-广播组件" class="headerlink" title="Android 广播组件"></a>Android 广播组件</h4><h4 id="Android-内容提供者组件"><a href="#Android-内容提供者组件" class="headerlink" title="Android 内容提供者组件"></a>Android 内容提供者组件</h4><h4 id="尺寸单位"><a href="#尺寸单位" class="headerlink" title="尺寸单位"></a>尺寸单位</h4><ul>
+        <p>学习路线<br>ViewModel, ViewBinding, Lifecycle, LiveData, Room，Navigation<br>OkHttp, Retrofit, RxJava, Dagger2<br>Kotlin 和 Kotlin 协程</p>
+<ul>
+<li><p>ViewModel 屏幕横向、竖向变化时，Activity 的 onCreate会执行，数据会重新加载，用ViewModel可以使数据的状态不受横竖屏的影响，原因是其存在时间范围是：对于 activity，是在 activity 完成时；而对于 fragment，是在 fragment 分离时。</p>
+</li>
+<li><p>ViewBinding MainActivity.java –&gt; activity_main.xml –&gt; ActivityMainBinding<br>需要在 Module build.gradle 里添加如下代码<br>android {<br>…<br>viewBinding {<br>  enabled true<br>}<br>…<br>}</p>
+</li>
+<li><p>LiveData 在底层数据库更改时通知视图,observe 观察者</p>
+</li>
+<li><p>Activity 生命周期<br>第一次打开 onCreate -&gt; onStart -&gt; onResume<br>退出 onPause -&gt; onStop<br>屏幕翻转 onPause -&gt; onStop -&gt; onDestroy -&gt; onCreate -&gt; onStart -&gt; onResume</p>
+</li>
+<li><p>Fragment 生命周期<br>onAttach(Activity的绑定) -&gt; onCreate -&gt; onCreateView -&gt; onActivityCreated -&gt; onStart</p>
+</li>
+</ul>
+<p>-&gt; onResume -&gt; onPause -&gt; onStop -&gt; onDestroyView -&gt; onDestroy -&gt; onDetach(解绑)</p>
+<ul>
+<li>Room</li>
+</ul>
+<p>文档<br><a href="https://developer.android.google.cn/jetpack/androidx/releases/room" target="_blank" rel="noopener">https://developer.android.google.cn/jetpack/androidx/releases/room</a></p>
+<p>Entity<br>Dao(Database access object)<br>Database</p>
+<h3 id="四大组件"><a href="#四大组件" class="headerlink" title="四大组件"></a>四大组件</h3><h4 id="Android-活动组件"><a href="#Android-活动组件" class="headerlink" title="Android 活动组件"></a>Android 活动组件</h4><h4 id="Android-服务组件"><a href="#Android-服务组件" class="headerlink" title="Android 服务组件"></a>Android 服务组件</h4><h4 id="Android-广播组件"><a href="#Android-广播组件" class="headerlink" title="Android 广播组件"></a>Android 广播组件</h4><h4 id="Android-内容提供者组件"><a href="#Android-内容提供者组件" class="headerlink" title="Android 内容提供者组件"></a>Android 内容提供者组件</h4><h4 id="尺寸单位"><a href="#尺寸单位" class="headerlink" title="尺寸单位"></a>尺寸单位</h4><ul>
 <li>dp 主要用来设置边距、组件大小</li>
 <li>sp 可伸缩像素，主要用来设置字体大小</li>
 </ul>
@@ -118,11 +137,21 @@
 <li><p>dx 所在路径 ~/Library/Android/sdk/build-tools/29.0.3<br>dx 可以将jar/class文件转换为dex文件，命令如下<br>dx –dex –output xxx.dex xxx.jar<br>或 dx –dex –output xxx.dex xxx.class</p>
 </li>
 </ul>
+<h4 id="android-studio"><a href="#android-studio" class="headerlink" title="android studio"></a>android studio</h4><ul>
+<li>打包参数设置 Build Variants –&gt; Active Build Variant</li>
+</ul>
+<h4 id="Intent-意图"><a href="#Intent-意图" class="headerlink" title="Intent 意图"></a>Intent 意图</h4><h5 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h5><ul>
+<li>有5个属性，category 、action 和 data、extra、flags<h5 id="隐式-Intent"><a href="#隐式-Intent" class="headerlink" title="隐式 Intent"></a>隐式 Intent</h5></li>
+<li>参与匹配的有三个属性 category 、action 和 data</li>
+</ul>
+<h4 id="ViewPager2"><a href="#ViewPager2" class="headerlink" title="ViewPager2"></a>ViewPager2</h4><ul>
+<li>自带懒加载</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/" data-id="cl1wax64h000drylh5f192j0s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/" data-id="cl3we6410000ko6lh4oith37k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -194,23 +223,23 @@
       <ul>
         
           <li>
-            <a href="/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">git常用命令</a>
+            <a href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/">逆向工具</a>
           </li>
         
           <li>
-            <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
+            <a href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">x86/x64逆向分析</a>
           </li>
         
           <li>
-            <a href="/2020/09/08/Android-Killer/">Android-Killer</a>
+            <a href="/2022/05/11/frida/">frida</a>
           </li>
         
           <li>
-            <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
+            <a href="/2022/05/10/objection%E5%88%9D%E6%8E%A2/">objection初探</a>
           </li>
         
           <li>
-            <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
+            <a href="/2022/04/26/Kotlin/">Kotlin</a>
           </li>
         
       </ul>

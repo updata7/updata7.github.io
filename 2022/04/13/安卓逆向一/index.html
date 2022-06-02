@@ -5,17 +5,17 @@
   
 
   
-  <title>autojs研究 | CK的博客</title>
+  <title>安卓逆向一 | CK的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="脚本切入口&#x2F;Users&#x2F;chenk&#x2F;Documents&#x2F;code&#x2F;github_code&#x2F;AA-my-project&#x2F;ck-Auto&#x2F;autojs&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;stardust&#x2F;autojs&#x2F;engine&#x2F;RhinoJavaScriptEngine.kt&#x2F;&#x2F; 点击事件所在文件SimpleActionAutomator 获取当前软件包等AppUtils">
+  <meta name="description" content="apk打包流程资源处理 aapt处理资源文件，分析AndroidMainifest.xml中的资源文件，生成R.java和resources.arsc文件，aidl处理aidl文件，生成对应的java接口文件  代码编译 将上一过程产生的R.java和java接口文件、工程源代码文件，一起通过Java Compiler编译成.class文件，达成jar包（这里可以加入代码混淆） 与第三方的jar包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="autojs研究">
-<meta property="og:url" content="http://yoursite.com/2020/06/09/autojs%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:title" content="安卓逆向一">
+<meta property="og:url" content="http://yoursite.com/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B8%80/index.html">
 <meta property="og:site_name" content="CK的博客">
-<meta property="og:description" content="脚本切入口&#x2F;Users&#x2F;chenk&#x2F;Documents&#x2F;code&#x2F;github_code&#x2F;AA-my-project&#x2F;ck-Auto&#x2F;autojs&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;stardust&#x2F;autojs&#x2F;engine&#x2F;RhinoJavaScriptEngine.kt&#x2F;&#x2F; 点击事件所在文件SimpleActionAutomator 获取当前软件包等AppUtils">
+<meta property="og:description" content="apk打包流程资源处理 aapt处理资源文件，分析AndroidMainifest.xml中的资源文件，生成R.java和resources.arsc文件，aidl处理aidl文件，生成对应的java接口文件  代码编译 将上一过程产生的R.java和java接口文件、工程源代码文件，一起通过Java Compiler编译成.class文件，达成jar包（这里可以加入代码混淆） 与第三方的jar包">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-09T07:14:35.000Z">
-<meta property="article:modified_time" content="2022-04-24T17:12:53.268Z">
+<meta property="article:published_time" content="2022-04-13T14:32:07.000Z">
+<meta property="article:modified_time" content="2022-05-07T15:34:28.299Z">
 <meta property="article:author" content="CK Jiang">
 <meta name="twitter:card" content="summary">
   
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-autojs研究" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-安卓逆向一" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/06/09/autojs%E7%A0%94%E7%A9%B6/" class="article-date">
-  <time datetime="2020-06-09T07:14:35.000Z" itemprop="datePublished">2020-06-09</time>
+    <a href="/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B8%80/" class="article-date">
+  <time datetime="2022-04-13T14:32:07.000Z" itemprop="datePublished">2022-04-13</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      autojs研究
+      安卓逆向一
     </h1>
   
 
@@ -88,13 +88,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="脚本切入口"><a href="#脚本切入口" class="headerlink" title="脚本切入口"></a>脚本切入口</h3><pre><code>/Users/chenk/Documents/code/github_code/AA-my-project/ck-Auto/autojs/src/main/java/com/stardust/autojs/engine/RhinoJavaScriptEngine.kt</code></pre><p>// 点击事件所在文件<br>SimpleActionAutomator</p>
-<p>获取当前软件包等<br>AppUtils</p>
+        <h3 id="apk打包流程"><a href="#apk打包流程" class="headerlink" title="apk打包流程"></a>apk打包流程</h3><h4 id="资源处理"><a href="#资源处理" class="headerlink" title="资源处理"></a>资源处理</h4><ul>
+<li>aapt处理资源文件，分析AndroidMainifest.xml中的资源文件，生成R.java和resources.arsc文件，<br>aidl处理aidl文件，生成对应的java接口文件</li>
+</ul>
+<h4 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h4><ul>
+<li>将上一过程产生的R.java和java接口文件、工程源代码文件，一起通过Java Compiler编译成.class文件，达成jar包（这里可以加入代码混淆）</li>
+<li>与第三方的jar包一起通过dx工具转换成.dex文件</li>
+<li>通过apkbuilder工具aapt生成的resources.arsc、上述的.dex文件、其他资源一起打包成未签名的apk</li>
+</ul>
+<h4 id="添加签名"><a href="#添加签名" class="headerlink" title="添加签名"></a>添加签名</h4><ul>
+<li>通过Jarsigner对生成的未签名的apk进行签名</li>
+<li>通过zipalign对签名后的apk进行处理，使apk中所有资源文件距离文件起始偏移为4字节的整倍数，目的是为了在通过内存映射访问apk文件时更快</li>
+</ul>
+<h3 id="APK反编译"><a href="#APK反编译" class="headerlink" title="APK反编译"></a>APK反编译</h3><ul>
+<li>apktool: apktool d -s xx.apk 能得到 classes.dex 一般用这种方式来反编译apk </li>
+<li>dex2jar: 将 dex 文件转化为 jar 文件</li>
+<li>jd-gui: 将Jar包文件反编译成java源文件</li>
+</ul>
+<h3 id="查看-Android手机CPU类型"><a href="#查看-Android手机CPU类型" class="headerlink" title="查看 Android手机CPU类型"></a>查看 Android手机CPU类型</h3><p>adb shell getprop ro.product.cpu.abi</p>
+<p>armeabiv-v7a(32位): 第7代及以上的 ARM 处理器。2011年5月以后的生产的大部分Android设备都使用它.<br>arm64-v8a(64位): 第8代、64位ARM处理器，现在已经是主流版本，三星 Galaxy S6是其中之一。<br>armeabi: 第5代、第6代的ARM处理器，早期的手机用的比较多。<br>x86: 平板、模拟器用得比较多。<br>x86_64: 64位的平板。</p>
+<h3 id="谷歌大手机用这个指令发-frida-server-到手机"><a href="#谷歌大手机用这个指令发-frida-server-到手机" class="headerlink" title="谷歌大手机用这个指令发 frida-server 到手机"></a>谷歌大手机用这个指令发 frida-server 到手机</h3><p>adb push /Users/chenk/Documents/code/github_code/Android/tool/frida-server-15.1.20-android-arm /data/local/tmp/frida-server</p>
+<h3 id="查看-CPU信息"><a href="#查看-CPU信息" class="headerlink" title="查看 CPU信息"></a>查看 CPU信息</h3><p>cat /proc/cpuinfo</p>
+<h3 id="Brida"><a href="#Brida" class="headerlink" title="Brida"></a>Brida</h3><p>Brida是一个Burp的插件<br>Brida是一座连接Burp和Frida的桥<br>解决 加密、解密、Fuzz、Scan一条龙服务</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/09/autojs%E7%A0%94%E7%A9%B6/" data-id="cl3we640u000do6lhaj7sh8cc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B8%80/" data-id="cl3we640y000io6lhdx8qf9p6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -103,19 +123,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/06/24/Linux%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/04/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Linux记录
+          安卓逆向二
         
       </div>
     </a>
   
   
-    <a href="/2020/05/05/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">安卓开发一</div>
+      <div class="article-nav-title">git常用命令</div>
     </a>
   
 </nav>

@@ -7,15 +7,15 @@
   
   <title>adb一些命令 | CK的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="adb 调试 安卓设备1234567891011121314151617$ adb devices   &#x2F;&#x2F; 查看设备列表$ adb -s xxx cmd    &#x2F;&#x2F; 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell$ adb push pcPath AndroidPath   &#x2F;&#x2F; 上传文件到安卓设备$ adb pull AndroidPath pcPath">
+  <meta name="description" content="adb 调试 安卓设备12345678910111213141516$ adb devices   &#x2F;&#x2F; 查看设备列表$ adb -s xxx cmd    &#x2F;&#x2F; 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell$ adb push pcPath AndroidPath   &#x2F;&#x2F; 上传文件到安卓设备$ adb pull AndroidPath pcPath   &#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="adb一些命令">
 <meta property="og:url" content="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="CK的博客">
-<meta property="og:description" content="adb 调试 安卓设备1234567891011121314151617$ adb devices   &#x2F;&#x2F; 查看设备列表$ adb -s xxx cmd    &#x2F;&#x2F; 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell$ adb push pcPath AndroidPath   &#x2F;&#x2F; 上传文件到安卓设备$ adb pull AndroidPath pcPath">
+<meta property="og:description" content="adb 调试 安卓设备12345678910111213141516$ adb devices   &#x2F;&#x2F; 查看设备列表$ adb -s xxx cmd    &#x2F;&#x2F; 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell$ adb push pcPath AndroidPath   &#x2F;&#x2F; 上传文件到安卓设备$ adb pull AndroidPath pcPath   &#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-30T02:38:20.000Z">
-<meta property="article:modified_time" content="2020-07-22T11:05:00.799Z">
+<meta property="article:modified_time" content="2022-05-12T02:08:12.342Z">
 <meta property="article:author" content="CK Jiang">
 <meta name="twitter:card" content="summary">
   
@@ -88,11 +88,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="adb-调试-安卓设备"><a href="#adb-调试-安卓设备" class="headerlink" title="adb 调试 安卓设备"></a>adb 调试 安卓设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices   // 查看设备列表</span><br><span class="line">$ adb -s xxx cmd    // 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell</span><br><span class="line">$ adb push pcPath AndroidPath   // 上传文件到安卓设备</span><br><span class="line">$ adb pull AndroidPath pcPath   // 拉安卓设备的文件到电脑</span><br><span class="line">$ adb install softwarePath      // 安装软件到安卓设备</span><br><span class="line">$ adb shell screencap -p sdcard/1.png   // 截图</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">true</span>     // 打开飞行模式 需要root权限</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">false</span>    // 关闭飞行模式 需</span><br><span class="line">要root权限</span><br><span class="line"></span><br><span class="line">// 发送广播 启动完成</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.BOOT_COMPLETED</span><br><span class="line"></span><br><span class="line">$ busybox vi xx     // 远程编辑文件</span><br><span class="line"></span><br><span class="line">// 进入fastboot</span><br><span class="line">$ adb reboot bootloader</span><br></pre></td></tr></table></figure>
+        <h3 id="adb-调试-安卓设备"><a href="#adb-调试-安卓设备" class="headerlink" title="adb 调试 安卓设备"></a>adb 调试 安卓设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices   // 查看设备列表</span><br><span class="line">$ adb -s xxx cmd    // 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell</span><br><span class="line">$ adb push pcPath AndroidPath   // 上传文件到安卓设备</span><br><span class="line">$ adb pull AndroidPath pcPath   // 拉安卓设备的文件到电脑</span><br><span class="line">$ adb install softwarePath      // 安装软件到安卓设备</span><br><span class="line">$ adb shell screencap -p sdcard/1.png   // 截图</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">true</span>     // 打开飞行模式 需要root权限</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">false</span>    // 关闭飞行模式 需</span><br><span class="line">要root权限</span><br><span class="line"></span><br><span class="line">// 发送广播 启动完成</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.BOOT_COMPLETED</span><br><span class="line"></span><br><span class="line">$ busybox vi xx     // 远程编辑文件</span><br><span class="line"></span><br><span class="line">// 进入fastboot</span><br></pre></td></tr></table></figure>
+<p>$ adb reboot bootloader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 查看当前activity</span><br></pre></td></tr></table></figure>
+<p>$ adb shell dumpsys activity top</p>
+<ul>
+<li><p>查看各类服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell service list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看某个包当前的Activity情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell dumpsys activity com.tencent.mm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出状态栏通知的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell dumpsys statusbar | grep notification=Notification</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看当前窗口的Activity</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys window | findstr mCurrentFocus</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看包路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm path packageName</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出匹配名字的包的路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm list packages -f -3 | cut -d &quot;&#x3D;&quot; -f1 | grep xxx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出所有包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm list packages</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动远程端口号(需要先连接数据线)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb tcpip 5555</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>端口远程设备<br>adb disconnect ip:port</p>
+</li>
+<li><p>端口转发<br>adb forward tcp:30333 tcp:30333</p>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" data-id="cl1wax64d0008rylh4azx0yem" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" data-id="cl3we640p0007o6lhbty37xek" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,9 +145,9 @@
     </a>
   
   
-    <a href="/2020/04/28/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">安卓逆向入门一</div>
+      <div class="article-nav-title">Kali Linux 渗透 Wifi 初探</div>
     </a>
   
 </nav>
@@ -151,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -164,23 +198,23 @@
       <ul>
         
           <li>
-            <a href="/2022/04/12/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">git常用命令</a>
+            <a href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/">逆向工具</a>
           </li>
         
           <li>
-            <a href="/2020/10/27/mac-php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">mac-php开发环境</a>
+            <a href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">x86/x64逆向分析</a>
           </li>
         
           <li>
-            <a href="/2020/09/08/Android-Killer/">Android-Killer</a>
+            <a href="/2022/05/11/frida/">frida</a>
           </li>
         
           <li>
-            <a href="/2020/08/18/%E5%AE%9D%E5%A1%94/">宝塔</a>
+            <a href="/2022/05/10/objection%E5%88%9D%E6%8E%A2/">objection初探</a>
           </li>
         
           <li>
-            <a href="/2020/08/13/sqlite3%E6%93%8D%E4%BD%9C/">sqlite3操作</a>
+            <a href="/2022/04/26/Kotlin/">Kotlin</a>
           </li>
         
       </ul>
