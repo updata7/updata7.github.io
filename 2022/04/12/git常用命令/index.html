@@ -6,12 +6,15 @@
     <meta charset="utf-8">
     <meta name="keywords" content="git常用命令, CKJIANG">
     <meta name="description" content="克隆远程仓库
-git clone –depth 1 xxx.git    // –depth 1 表示仅克隆最新的一个版本
+克隆master分支最新版本内容到本地1$ git clone --depth 1 xxx.git
+
+
 
 更新远程github库到本地
-1.git status – 查看是否有冲突
+1.查看是否有冲突
+1$ git status
 
-2.没冲突的话，直接到第三步，有冲突">
+2.没冲突的话，直接到第三步，有冲突的话">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -426,44 +429,51 @@ git clone –depth 1 xxx.git    // –depth 1 表示仅克隆最新的一个版�
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h2><ul>
-<li>git clone –depth 1 xxx.git    // –depth 1 表示仅克隆最新的一个版本</li>
+<li>克隆master分支最新版本内容到本地<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --depth 1 xxx.git</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <h2 id="更新远程github库到本地"><a href="#更新远程github库到本地" class="headerlink" title="更新远程github库到本地"></a>更新远程github库到本地</h2><ul>
-<li><p>1.git status – 查看是否有冲突</p>
+<li><p>1.查看是否有冲突</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>2.没冲突的话，直接到第三步，有冲突的话，想忽略本地的修改：</p>
-<p>​        git reset –hard origin/master</p>
-<p>   不想忽略本地的修改：</p>
-<p>​        git add filename</p>
-<p>​        git commit -m “message”</p>
-<p>  如果合并后觉得混乱</p>
-<p>​        git reset –hard HEAD</p>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard origin/master</span><br></pre></td></tr></table></figure></li>
+<li><p>2.1 不想忽略本地的修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add filename</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> commit -m <span class="string">"message"</span></span><br></pre></td></tr></table></figure></li>
+<li><p>2.2 如果合并后觉得混乱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure></li>
 <li><p>3.想合并</p>
-<pre><code>git stash   //备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。
-git pull
-git stash pop</code></pre></li>
-<li><p>3.git pull</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git stash   //备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。</span><br><span class="line"></span><br><span class="line">$ git stash pop</span><br><span class="line"></span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<h2 id="上传本地的文件"><a href="#上传本地的文件" class="headerlink" title="上传本地的文件"></a>上传本地的文件</h2><p>​        git add .</p>
-<p>​        git commit -m ‘something’</p>
-<p>​        git push</p>
-<h2 id="上传大文件-超过100M的"><a href="#上传大文件-超过100M的" class="headerlink" title="上传大文件 超过100M的"></a>上传大文件 超过100M的</h2><p>​        安装 git-lfs</p>
-<p>​        brew install git-lfs</p>
-<p>​        git lfs track “*.zip” –这里的 “ *.zip “ 就是要上传的大文件的路径</p>
-<p>​        git add .gitattributes</p>
-<p>​        git add demo.gif</p>
-<p>​        git commit -m “xxx”</p>
-<p>​        git push </p>
-<h2 id="查看某个文件本次改变情况"><a href="#查看某个文件本次改变情况" class="headerlink" title="查看某个文件本次改变情况"></a>查看某个文件本次改变情况</h2><p>​        git log -p filename</p>
-<h2 id="查看当前分支信息"><a href="#查看当前分支信息" class="headerlink" title="查看当前分支信息"></a>查看当前分支信息</h2><p>   git config –list</p>
-<h2 id="查看处于哪个分支"><a href="#查看处于哪个分支" class="headerlink" title="查看处于哪个分支"></a>查看处于哪个分支</h2><p>   git branch</p>
-<h2 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h2><p>   git checkout -b xxx</p>
-<h2 id="查看远程仓库地址"><a href="#查看远程仓库地址" class="headerlink" title="查看远程仓库地址"></a>查看远程仓库地址</h2><p>   git remote -v</p>
-<h2 id="撤销git-add"><a href="#撤销git-add" class="headerlink" title="撤销git add"></a>撤销git add</h2><p>   git rm –cached filename</p>
-<p>   如果撤销的是文件夹要加 -r<br>   git rm -r –cached floder </p>
+<h2 id="上传本地的文件"><a href="#上传本地的文件" class="headerlink" title="上传本地的文件"></a>上传本地的文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'something'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="上传大文件-超过100M的"><a href="#上传大文件-超过100M的" class="headerlink" title="上传大文件 超过100M的"></a>上传大文件 超过100M的</h2><p>1.安装 git-lfs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git-lfs</span><br><span class="line"></span><br><span class="line">$ git lfs track “*.zip” --这里的 “ *.zip <span class="string">" 就是要上传的大文件的路径</span></span><br></pre></td></tr></table></figure>
+<p>2.这行忘记为什么要加了,可以试试不加,有遇到再试试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .gitattributes</span><br></pre></td></tr></table></figure>
+<p>3.添加所要上传的文件后提交</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add demo.gif</span><br><span class="line">$ git commit -m <span class="string">"xxx"</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看某个文件本次改变情况"><a href="#查看某个文件本次改变情况" class="headerlink" title="查看某个文件本次改变情况"></a>查看某个文件本次改变情况</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> -p filename</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看当前分支信息"><a href="#查看当前分支信息" class="headerlink" title="查看当前分支信息"></a>查看当前分支信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看处于哪个分支"><a href="#查看处于哪个分支" class="headerlink" title="查看处于哪个分支"></a>查看处于哪个分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b xxx</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看远程仓库地址"><a href="#查看远程仓库地址" class="headerlink" title="查看远程仓库地址"></a>查看远程仓库地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="撤销git-add"><a href="#撤销git-add" class="headerlink" title="撤销git add"></a>撤销git add</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached filename</span><br></pre></td></tr></table></figure>
+<h2 id="如果撤销的是文件夹要加-r"><a href="#如果撤销的是文件夹要加-r" class="headerlink" title="如果撤销的是文件夹要加 -r"></a>如果撤销的是文件夹要加 -r</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm -r --cached floder</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
