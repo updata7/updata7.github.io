@@ -11,6 +11,18 @@
         <content type="html"><![CDATA[<p>123<br><img src="123.png" alt=""></p>]]></content>
       
       
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> test </tag>
+            
+        </tags>
       
     </entry>
     
