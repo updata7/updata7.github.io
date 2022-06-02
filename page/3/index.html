@@ -1,378 +1,834 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 
-  
-  <title>CK的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="CK的博客">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="CK的博客">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CK Jiang">
-<meta name="twitter:card" content="summary">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="CK的博客">
+    <meta name="description" content="CK的博客">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>CK的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">CK的博客</a>
-      </h1>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">CK的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
       
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">技术探讨，欢迎加微信：updata7(注明来意)</a>
-        </h2>
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
       
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">CK的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    <ul class="menu-list mobile-menu-list">
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
         
-      </nav>
-      <nav id="sub-nav">
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Mac-反编译apk工具的使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2020-05-01T03:25:00.000Z" itemprop="datePublished">2020-05-01</time>
-</a>
+
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">Mac-反编译apk工具的使用</a>
-    </h1>
-  
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                技术探讨，欢迎加微信：updata7(注明来意)
+                
+            </div>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安卓反编译三大利器-apktool、dex2jar、JD-GUI"><a href="#安卓反编译三大利器-apktool、dex2jar、JD-GUI" class="headerlink" title="安卓反编译三大利器 apktool、dex2jar、JD-GUI"></a>安卓反编译三大利器 apktool、dex2jar、JD-GUI</h2><h3 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h3><ul>
-<li>Google 提供的 APK 编译工具，能够反编译和编译APK</li>
-</ul>
-<h3 id="dex2jar"><a href="#dex2jar" class="headerlink" title="dex2jar"></a>dex2jar</h3><ul>
-<li>专门用来反编译.dex文件，可以把.dex文件反编译为.jar文件</li>
-<li>最新版本在 <a href="https://github.com/pxb1988/dex2jar.git" target="_blank" rel="noopener">github</a>，编译命令 ./gradlew build，生成的可执行文件在 根目录/dex-tools/build/distributions/dex-tools-2.1-SNAPSHOT.zip</li>
-<li>执行命令 目录/d2j-dex2jar class.dex</li>
-</ul>
-<h3 id="JD-GUI"><a href="#JD-GUI" class="headerlink" title="JD-GUI"></a>JD-GUI</h3><ul>
-<li>将.jar文件，反编译为.java文件</li>
-</ul>
-<h2 id="apktool-使用"><a href="#apktool-使用" class="headerlink" title="apktool 使用"></a>apktool 使用</h2><ul>
-<li>apktool d xx.apk  不能得到classes.dex文件，但有smali文件夹,smali里面存放的就是java文件，不过已经被转换为smali语言</li>
-<li>apktool d -s xx.apk 能得到 classes.dex 一般用这种方式来反编译apk</li>
-<li>apktool b -o output.apk dir 打包，只能打包通过apktool 反编译出来的文件夹</li>
-</ul>
-<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><ul>
-<li><p>生成keystore文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias demo.keystore -keyalg RSA -validity 40000 -keystore demo.keystore</span><br></pre></td></tr></table></figure>
-
-<p>-genkey 产生证书文件</p>
-<p>-alias 产生别名</p>
-<p>-keystore 指定密钥库的keystore文件</p>
-<p>-keyalg 指定密钥算法</p>
-<p>-validity 证书有效天数</p>
-</li>
-<li><p>签名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore demo.keystore demo.apk demo.keystore</span><br></pre></td></tr></table></figure>
-
-<p>-verbose 指定生成详细输出<br>-keystore 指定数字证书存储路径</p>
-<p>最后面的demo.keystore 是指生成keystore文件时，-alias 带的别名，如果生成keystore时没有带-alias，则签名的时候，最后一个demo.keystore 应该为 mykey，即</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore demo.keystore demo.apk mykey</span><br></pre></td></tr></table></figure>
-
-<p><img src="xx/image-20200504200327918.png" alt="image-20200504200327918"></p>
-</li>
-</ul>
-
-      
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: [ 
+                            
+                                "从来没有真正的绝境, 只有心灵的迷途",
+                            
+                                "Never really desperate, only the lost of the soul",
+                            
+                        ],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cl3we640k0003o6lhanjwab8n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-adb一些命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time datetime="2020-04-30T02:38:20.000Z" itemprop="datePublished">2020-04-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/">adb一些命令</a>
-    </h1>
-  
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+</script>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="adb-调试-安卓设备"><a href="#adb-调试-安卓设备" class="headerlink" title="adb 调试 安卓设备"></a>adb 调试 安卓设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices   // 查看设备列表</span><br><span class="line">$ adb -s xxx cmd    // 选择一个设备并执行相应命令，如 adb -s FA72K0123456 shell</span><br><span class="line">$ adb push pcPath AndroidPath   // 上传文件到安卓设备</span><br><span class="line">$ adb pull AndroidPath pcPath   // 拉安卓设备的文件到电脑</span><br><span class="line">$ adb install softwarePath      // 安装软件到安卓设备</span><br><span class="line">$ adb shell screencap -p sdcard/1.png   // 截图</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">true</span>     // 打开飞行模式 需要root权限</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="literal">false</span>    // 关闭飞行模式 需</span><br><span class="line">要root权限</span><br><span class="line"></span><br><span class="line">// 发送广播 启动完成</span><br><span class="line">$ adb shell am broadcast -a android.intent.action.BOOT_COMPLETED</span><br><span class="line"></span><br><span class="line">$ busybox vi xx     // 远程编辑文件</span><br><span class="line"></span><br><span class="line">// 进入fastboot</span><br></pre></td></tr></table></figure>
-<p>$ adb reboot bootloader</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 查看当前activity</span><br></pre></td></tr></table></figure>
-<p>$ adb shell dumpsys activity top</p>
-<ul>
-<li><p>查看各类服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell service list</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看某个包当前的Activity情况</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell dumpsys activity com.tencent.mm</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>找出状态栏通知的包名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell dumpsys statusbar | grep notification=Notification</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看当前窗口的Activity</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys window | findstr mCurrentFocus</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看包路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm path packageName</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>列出匹配名字的包的路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm list packages -f -3 | cut -d &quot;&#x3D;&quot; -f1 | grep xxx</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>列出所有包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm list packages</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动远程端口号(需要先连接数据线)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb tcpip 5555</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>端口远程设备<br>adb disconnect ip:port</p>
-</li>
-<li><p>端口转发<br>adb forward tcp:30333 tcp:30333</p>
-</li>
-</ul>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" data-id="cl3we640p0007o6lhbty37xek" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-Kail-Linux-渗透-Wifi-初探" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" class="article-date">
-  <time datetime="2020-04-17T01:58:41.000Z" itemprop="datePublished">2020-04-17</time>
-</a>
+<main class="content">
+
     
-  </div>
-  <div class="article-inner">
+
     
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">Kali Linux 渗透 Wifi 初探</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="先将无线网卡插入Kali-Linux，输入iwconfig命令查看得到，网卡名为wlan0"><a href="#先将无线网卡插入Kali-Linux，输入iwconfig命令查看得到，网卡名为wlan0" class="headerlink" title="先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0"></a>先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0</h3><h3 id="排除影响进行无线实验的因素"><a href="#排除影响进行无线实验的因素" class="headerlink" title="排除影响进行无线实验的因素"></a>排除影响进行无线实验的因素</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ service network-manager stop</span><br><span class="line">$ airmon-ng check <span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/05/01/Mac-%E5%8F%8D%E7%BC%96%E8%AF%91apk%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Mac-反编译apk工具的使用">
+                            
+                            <span class="card-title">Mac-反编译apk工具的使用</span>
+                        </div>
+                    </a>
 
-<h3 id="启动monitor模式"><a href="#启动monitor模式" class="headerlink" title="启动monitor模式"></a>启动monitor模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airman-ng start wlan0</span><br></pre></td></tr></table></figure>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                安卓反编译三大利器 apktool、dex2jar、JD-GUIapktool
+Google 提供的 APK 编译工具，能够反编译和编译APK
 
-<h3 id="抓包（扫描wifi）"><a href="#抓包（扫描wifi）" class="headerlink" title="抓包（扫描wifi）"></a>抓包（扫描wifi）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng wlan0mon</span><br></pre></td></tr></table></figure>
+dex2jar
+专门用来反编译.dex文件，可以把.dex文件反编译为.jar文件
+最新版本在
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CK Jiang
+                                
+                            </span>
+                        </div>
+                    </div>
 
-<h3 id="针对要破解的WiFi重新开启监听记录"><a href="#针对要破解的WiFi重新开启监听记录" class="headerlink" title="针对要破解的WiFi重新开启监听记录"></a>针对要破解的WiFi重新开启监听记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng -w 文件名 --bssid [路由器的MAC地址] -c [监听频道CH] wlan0mon</span><br></pre></td></tr></table></figure>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/30/adb%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="adb一些命令">
+                            
+                            <span class="card-title">adb一些命令</span>
+                        </div>
+                    </a>
 
-<h3 id="打开另一个shell窗口运行-强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包"><a href="#打开另一个shell窗口运行-强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包" class="headerlink" title="打开另一个shell窗口运行(强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包)"></a>打开另一个shell窗口运行(强制断开连接到路由器的设备，以便在它再次连接时捕获它的认证包)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aireplay-ng -0 1 -a [路由器的MAC地址] -c [客户端的MAC地址] wlan0mon</span><br></pre></td></tr></table></figure>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                adb 调试 安卓设备12345678910111213141516$ adb devices   // 查看设备列表$ adb -s xxx cmd    // 选择一个设备并执行相应命令，如 adb -s FA72K0123456 sh
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CK Jiang
+                                
+                            </span>
+                        </div>
+                    </div>
 
-<h3 id="跑包测试加密的无线密码"><a href="#跑包测试加密的无线密码" class="headerlink" title="跑包测试加密的无线密码"></a>跑包测试加密的无线密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aircrack-ng -w [准备好的密码字典] [捕获到的数据包 .<span class="built_in">cap</span>后缀的]</span><br></pre></td></tr></table></figure>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Kali Linux 渗透 Wifi 初探">
+                            
+                            <span class="card-title">Kali Linux 渗透 Wifi 初探</span>
+                        </div>
+                    </a>
 
-<h3 id="Kali中几个常用的字典文件的位置："><a href="#Kali中几个常用的字典文件的位置：" class="headerlink" title="Kali中几个常用的字典文件的位置："></a>Kali中几个常用的字典文件的位置：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/john/password.lst</span><br><span class="line">/usr/share/wfuzz/wordlist</span><br><span class="line">/usr/share/wordlists</span><br><span class="line">/usr/share/wordlists/rockyou.txt.gz</span><br></pre></td></tr></table></figure>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                先将无线网卡插入Kali Linux，输入iwconfig命令查看得到，网卡名为wlan0排除影响进行无线实验的因素12$ service network-manager stop$ airmon-ng check kill
 
-<h3 id="破解例子"><a href="#破解例子" class="headerlink" title="破解例子"></a>破解例子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/share/wordlists/ &amp;&amp; gunzip rockyou.txt.gz</span><br><span class="line">​$ aircrack-ng -w /usr/share/wordlists/rockyou.txt wpa2-01.cap</span><br></pre></td></tr></table></figure>
+启动moni
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CK Jiang
+                                
+                            </span>
+                        </div>
+                    </div>
 
-<h3 id="END-等待跑包吧。。"><a href="#END-等待跑包吧。。" class="headerlink" title="END 等待跑包吧。。"></a>END 等待跑包吧。。</h3>
-      
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F/">
+                            <span class="chip bg-color">渗透</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+        </div>
+    </article>
+
+</main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">3 / 3</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a class="right btn-floating btn-large disabled">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/17/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/" data-id="cl3we640j0002o6lh81843g36" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
 
 
-  <nav id="page-nav">
+    <footer class="page-footer bg-color">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
-</section>
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
         
-          <aside id="sidebar">
-  
-    
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
 
-  
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a><span class="tag-list-count">1</span></li></ul>
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
     </div>
-  </div>
+</div>
 
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 10px;">渗透</a>
-    </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-  </div>
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <a href="/about" target="_blank">CK Jiang</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/05/15/%E9%80%86%E5%90%91%E5%B7%A5%E5%85%B7/">逆向工具</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/12/x86-x64%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">x86/x64逆向分析</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/11/frida/">frida</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/10/objection%E5%88%9D%E6%8E%A2/">objection初探</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/26/Kotlin/">Kotlin</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 CK Jiang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
     </div>
-  </div>
 </footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
 
+    <!-- 雪花特效 -->
+    
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <!-- 鼠标星星特效 -->
+    
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
 
+    <!-- Baidu Analytics -->
 
+    <!-- Baidu Push -->
 
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
-<script src="/js/script.js"></script>
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
+    
 
+    
 
+    <!--腾讯兔小巢-->
+    
+    
 
-  </div>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
 </body>
+
 </html>
