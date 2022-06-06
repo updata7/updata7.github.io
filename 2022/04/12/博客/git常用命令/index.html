@@ -4,9 +4,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="test, 独立开发者">
-    <meta name="description" content="123
-">
+    <meta name="keywords" content="git常用命令, 独立开发者">
+    <meta name="description" content="克隆远程仓库
+克隆master分支最新版本内容到本地1$ git clone --depth 1 xxx.git
+
+
+
+更新远程github库到本地
+1.查看是否有冲突
+1$ git status
+
+2.没冲突的话，直接到第三步，有冲突的话">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +28,7 @@
 
     
 
-    <title>test | 独立开发者</title>
+    <title>git常用命令 | 独立开发者</title>
     <link rel="icon" type="image/png" href="../../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../../libs/awesome/css/all.min.css">
@@ -266,12 +274,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">test</h1>
+                    <h1 class="description center-align post-title">git常用命令</h1>
                 </div>
             </div>
         </div>
@@ -387,8 +395,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../tags/test/">
-                                <span class="chip bg-color">test</span>
+                            <a href="../../../../../tags/git/">
+                                <span class="chip bg-color">git</span>
                             </a>
                         
                     </div>
@@ -412,7 +420,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-02
+                    2022-04-12
                 </div>
                 
 
@@ -433,8 +441,53 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>123<br><img src="123.png" alt=""></p>
+                <h2 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h2><ul>
+<li>克隆master分支最新版本内容到本地<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --depth 1 xxx.git</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h2 id="更新远程github库到本地"><a href="#更新远程github库到本地" class="headerlink" title="更新远程github库到本地"></a>更新远程github库到本地</h2><ul>
+<li><p>1.查看是否有冲突</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.没冲突的话，直接到第三步，有冲突的话，想忽略本地的修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard origin/master</span><br></pre></td></tr></table></figure></li>
+<li><p>2.1 不想忽略本地的修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add filename</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> commit -m <span class="string">"message"</span></span><br></pre></td></tr></table></figure></li>
+<li><p>2.2 如果合并后觉得混乱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.想合并</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git stash   //备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。</span><br><span class="line">$ git stash pop</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="上传本地的文件"><a href="#上传本地的文件" class="headerlink" title="上传本地的文件"></a>上传本地的文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'something'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="上传大文件-超过100M的"><a href="#上传大文件-超过100M的" class="headerlink" title="上传大文件 超过100M的"></a>上传大文件 超过100M的</h2><ul>
+<li>1.安装 git-lfs<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git-lfs</span><br><span class="line">$ git lfs track “*.zip” --这里的 “ *.zip <span class="string">" 就是要上传的大文件的路径</span></span><br></pre></td></tr></table></figure></li>
+<li>2.这行忘记为什么要加了,可以试试不加,有遇到再试试<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .gitattributes</span><br></pre></td></tr></table></figure></li>
+<li>3.添加所要上传的文件后提交<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add demo.gif</span><br><span class="line">$ git commit -m <span class="string">"xxx"</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="查看某个文件本次改变情况"><a href="#查看某个文件本次改变情况" class="headerlink" title="查看某个文件本次改变情况"></a>查看某个文件本次改变情况</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> -p filename</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看当前分支信息"><a href="#查看当前分支信息" class="headerlink" title="查看当前分支信息"></a>查看当前分支信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看处于哪个分支"><a href="#查看处于哪个分支" class="headerlink" title="查看处于哪个分支"></a>查看处于哪个分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b xxx</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看远程仓库地址"><a href="#查看远程仓库地址" class="headerlink" title="查看远程仓库地址"></a>查看远程仓库地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="撤销git-add"><a href="#撤销git-add" class="headerlink" title="撤销git add"></a>撤销git add</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached filename</span><br></pre></td></tr></table></figure>
+<h2 id="如果撤销的是文件夹要加-r"><a href="#如果撤销的是文件夹要加-r" class="headerlink" title="如果撤销的是文件夹要加 -r"></a>如果撤销的是文件夹要加 -r</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm -r --cached floder</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
@@ -498,8 +551,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../tags/test/">
-                                    <span class="chip bg-color">test</span>
+                                <a href="../../../../../tags/git/">
+                                    <span class="chip bg-color">git</span>
                                 </a>
                             
                         </div>
@@ -673,12 +726,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../../../../06/02/%E5%8D%9A%E5%AE%A2/test/">
                     <div class="card-image">
                         
                         
@@ -694,9 +746,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -709,7 +761,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -728,13 +779,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../04/12/%E5%8D%9A%E5%AE%A2/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                <a href="../../../../../2020/04/17/%E5%8D%9A%E5%AE%A2/Kail-Linux-%E6%B8%97%E9%80%8F-Wifi-%E5%88%9D%E6%8E%A2/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../medias/featureimages/17.jpg" class="responsive-img" alt="git常用命令">
+                        <img src="../../../../../medias/featureimages/9.jpg" class="responsive-img" alt="Kali Linux 渗透 Wifi 初探">
                         
-                        <span class="card-title">git常用命令</span>
+                        <span class="card-title">Kali Linux 渗透 Wifi 初探</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -745,7 +796,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-17
                             </span>
                         <span class="publish-author">
                             
@@ -762,8 +813,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../tags/git/">
-                        <span class="chip bg-color">git</span>
+                    <a href="../../../../../tags/%E6%B8%97%E9%80%8F/">
+                        <span class="chip bg-color">渗透</span>
                     </a>
                     
                 </div>
